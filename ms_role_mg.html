@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>角色管理</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+
+    <link rel="stylesheet" href="./plugins/bootstrap-4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./plugins/toastr-2.1.4/toastr.min.css">
+    <link rel="stylesheet" href="./plugins/data-tables/data-tables-1.10.18/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="./plugins/jstree-3.3.7/themes/default/style.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="shortcut icon" href="imgs/favicon.ico">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+
+<body class="gray-bg">
+
+    <div class="wrapper wrapper-content">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>角色列表</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="container-fluid">
+                    <!-- 筛选栏 -->
+                    <div class="row">
+                        <div class="col-12">
+                            <form class="tb-filter" id="role-list-filter">
+                                <div class="form-row align-items-end">
+                                    <!-- 角色名 -->
+                                    <div class="form-group col-auto">
+                                        <label for="role-name">角色名：</label>
+                                        <input type="text" name="role-name" id="role-name" class="form-control"
+                                            placeholder="">
+                                    </div>
+                                    <!-- 角色key -->
+                                    <div class="form-group col-auto">
+                                        <label for="role-key">角色key：</label>
+                                        <select class="form-control" name="role-key" id="role-key">
+                                            <option value="">-- 请选择 --</option>
+                                        </select>
+                                    </div>
+                                    <!-- 查询按钮 -->
+                                    <div class="form-group col-auto">
+                                        <button type="button" name="query-role" id="query-role" class="btn btn-primary">查 询</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- 表格工具栏 -->
+                    <div class="row">
+                        <div class="col-12 tb-toolbar" id="role-list-table-toolbar">
+                            <div class="btn-group float-right">
+                                <!-- <button class="btn btn-primary" type="button">新 增</button> -->
+                                <!-- 新增角色的按钮 -->
+                                <button disabled="disabled" type="button" id="add-role" class="btn btn-primary add-role" data-toggle="modal"
+                                    data-target="#add-role-dialog">
+                                    新 增
+                                </button>
+                                <!-- 新增角色的Modal -->
+                                <div class="modal fade" id="add-role-dialog" tabindex="-1" role="dialog"
+                                    aria-labelledby="add-role-dialog-title" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">新增角色</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="add-role-name">
+                                                            <small class="text-danger">* </small>角色名称
+                                                        </label>
+                                                        <input type="text" class="form-control" name="add-role-name"
+                                                            id="add-role-name" aria-describedby="add-role-name-tip"
+                                                            placeholder="">
+                                                        <small id="add-role-name-tip"
+                                                            class="form-text text-danger">注：角色名称不要重复</small>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="add-role-key">
+                                                            <small class="text-danger">* </small>角色key
+                                                        </label>
+                                                        <input type="text" class="form-control" name="add-role-key"
+                                                            id="add-role-key" aria-describedby="add-role-key-tip"
+                                                            placeholder="">
+                                                        <small id="add-role-key-tip"
+                                                            class="form-text text-danger">注：给角色自定义一个可读的key值，由大写英文字母或下划线组成，key值不要重复</small>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">取
+                                                    消</button>
+                                                <button type="button" class="btn btn-primary" id="sure-add-role">确
+                                                    定</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 编辑角色的Modal -->
+                                <div class="modal fade" id="edit-role-dialog" tabindex="-1" role="dialog"
+                                    aria-labelledby="edit-role-dialog-title" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">编辑角色</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="edit-role-name">
+                                                            <small class="text-danger">* </small>角色名称
+                                                        </label>
+                                                        <input type="text" class="form-control" name="edit-role-name"
+                                                            id="edit-role-name" aria-describedby="edit-role-name-tip"
+                                                            placeholder="">
+                                                        <small id="edit-role-name-tip"
+                                                            class="form-text text-danger">注：角色名称不要重复</small>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="edit-role-key">
+                                                            <small class="text-danger">* </small>角色key
+                                                        </label>
+                                                        <input type="text" class="form-control" name="edit-role-key"
+                                                            id="edit-role-key" aria-describedby="edit-role-key-tip"
+                                                            placeholder="">
+                                                        <small id="edit-role-key-tip"
+                                                            class="form-text text-danger">注：给角色自定义一个可读的key值，由大写英文字母或下划线组成，key值不要重复</small>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">取
+                                                    消</button>
+                                                <button type="button" class="btn btn-primary" id="sure-edit-role">确
+                                                    定</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 删除角色的Modal -->
+                                <div class="modal fade" id="delete-role-dialog" tabindex="-1" role="dialog"
+                                    aria-labelledby="delete-role-dialog-title" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">删除角色</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>确定要删除角色 <span class="label label-primary"
+                                                        id="delete-role-name"></span> 吗？删除之前请先解除关联到该角色上的所有账户，否则无法删除该角色！
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">取
+                                                    消</button>
+                                                <button type="button" class="btn btn-primary" id="sure-delete-role">确
+                                                    定</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 分配资源的Modal -->
+                                <div class="modal fade" id="link-resource-dialog" tabindex="-1" role="dialog"
+                                    aria-labelledby="link-resource-dialog-title" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">分配资源</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div id="resource-tree">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">取
+                                                    消</button>
+                                                <button type="button" class="btn btn-primary" id="sure-link-resource">确
+                                                    定</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 下面预留扩展的位置 -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 角色表格 -->
+                    <div class="row">
+                        <div class="col-12 tb-data" id="role-list-table">
+                            <table class="table table-striped table-bordered table-hover" id="role-table">
+                                <thead>
+                                    <tr>
+                                        <th>角色名</th>
+                                        <th>角色key</th>
+                                        <th>创建时间</th>
+                                        <th>关联的账户</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="role-table-body">
+                                    <tr class="gradeX">
+                                        <td>管理员</td>
+                                        <td>RK_MANAGER</td>
+                                        <td>2019-08-06 10:53:03</td>
+                                        <td class="gradeX">
+                                            <ul class="list-group list-group-flush list-group-horizontal">
+                                                <li class="list-group-item">
+                                                    <span class="label label-info">张既海</span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <span class="label label-info">许鑫</span>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <button type="button" name="role-edit" id="role-edit"
+                                                class="btn btn-info btn-sm" data-toggle="modal"
+                                                data-target="#edit-role-dialog">编辑</button>
+                                            <button type="button" name="role-delete" id="role-delete"
+                                                class="btn btn-danger btn-sm" data-toggle="modal"
+                                                data-target="#delete-role-dialog">删除</button>
+                                            <button type="button" name="link-resource" id="link-resource"
+                                                class="btn btn-primary btn-sm" data-toggle="modal"
+                                                data-target="#link-resource-dialog">分配资源</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript files-->
+    <script src="./plugins/jquery-3.4.0/jquery-3.4.0.min.js"></script>
+    <script src="./plugins/popper.js/popper.min.js"></script>
+    <script src="./plugins/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+    <script src="./plugins/jquery.cookie/jquery.cookie.js"></script>
+    <script src="./plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="./plugins/toastr-2.1.4/toastr.min.js"></script>
+    <script src="./plugins/data-tables/data-tables-1.10.18/js/jquery.dataTables.min.js"></script>
+    <script src="./plugins/data-tables/data-tables-1.10.18/js/dataTables.bootstrap4.min.js"></script>
+    <script src="./plugins/jstree-3.3.7/jstree.min.js"></script>
+
+    <!-- public -->
+    <script src="js/public.js"></script>
+    <!-- self -->
+    <script src="js/ms_role_mg.js"></script>
+
+</body>
+
+</html>

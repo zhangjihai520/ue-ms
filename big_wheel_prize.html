@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>大转盘奖品</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="robots" content="all,follow">
+
+		<link rel="stylesheet" href="./plugins/bootstrap-4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="./plugins/toastr-2.1.4/toastr.min.css">
+		<link rel="stylesheet" href="./plugins/data-tables/data-tables-1.10.18/css/dataTables.bootstrap4.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="shortcut icon" href="imgs/favicon.ico">
+		<!-- Tweaks for older IEs-->
+		<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+	</head>
+
+	<body class="gray-bg">
+
+		<div class="wrapper wrapper-content">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>大转盘奖品列表</h5>
+				</div>
+				<div class="ibox-content">
+					<div class="container-fluid">
+						<!-- 筛选栏 -->
+						<div class="row">
+							<div class="col-12">
+								<div class="form-inline">
+									<!--<div class="form-group form-group">
+										<label for="" class="control-label">商品创建时间：</label>
+										<input type="date"  class="form-control" id="shop_date" />
+									</div>-->
+									<!-- 值 -->
+									<div class="form-group col-auto">
+										<label for="" class="control-label">商品类型：</label>
+										<select class="form-control" id="shop_type">
+											<option value="">--请选择--</option>
+											<option value="0">实物</option>
+											<option value="1">券</option>
+											<option value="2">积分</option>
+										</select>
+									</div>
+									<div class="form-group col-auto">
+										<label for="" class="control-label">商品状态：</label>
+										<select class="form-control" id="shop_stuts">
+											<option value="">--请选择--</option>
+											<option value="0">待上架</option>
+											<option value="1">已上架</option>
+											<option value="-1">已下架</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<div class="form-inline">
+									<div class="form-group col-auto">
+										<label for="" class="control-label">商品名称：</label>
+										<input type="text" name="" id="shop_name" class="form-control" placeholder="单行输入">
+									</div>
+
+									<div class="form-group col-auto">
+										<button type="button" name="query-user" id="shop_search" class="btn btn-primary ">查 询</button>
+									</div>
+									<div class="form-group col-auto">
+										<button type="button" name="query-user" id="shop_ready" class="btn btn-primary ">重置</button>
+									</div>
+									<div class="form-group col-auto">
+										<button type="button" id="add-big-wheel-prize" class="btn btn-primary add-role addShopIntegral" data-toggle="modal" data-target="#add-role-dialog">
+                                    			添加奖品
+                             			</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal fade" id="add-role-dialog" tabindex="-1" role="dialog" aria-labelledby="add-role-dialog-title" aria-hidden="true">
+							<div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title">添加奖品</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+									</div>
+									<div class="modal-body">
+										<form class="test">
+											<div class="form-group">
+												<label for="add_sm_commodity_id">
+													<small class="text-danger">* </small>奖品:
+												</label>
+												<select class="form-control" name="comType"
+														id="add_sm_commodity_id">
+													<option value="">--请选择--</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="AddDialPercent">
+													<small class="text-danger">* </small>大转盘被抽中的百分比:
+												</label>
+												<input type="text" class="form-control" name="name"
+													   id="AddDialPercent" aria-describedby="shopAd_name-tip"
+													   placeholder="">
+												<small id="shopAd_name-tip"
+													   class="form-text text-danger">注：以整数形式表示,总数不能超过70</small>
+											</div>
+										</form>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">取
+                                                    消</button>
+										<button type="button" class="btn btn-primary" id="shop_add">确
+                                                    定</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal fade" id="edit-commodity-dialog" tabindex="-1" role="dialog" aria-labelledby="add-role-dialog-title" aria-hidden="true">
+							<div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title">修改百分比</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<form class="test">
+											<div class="form-group">
+												<label for="editDialPercent">
+													<small class="text-danger">* </small>大转盘被抽中的百分比:
+												</label>
+												<input type="text" class="form-control" name="name"
+													   id="editDialPercent" aria-describedby="editDialPercent-tip"
+													   placeholder="">
+												<small id="editDialPercent-tip"
+													   class="form-text text-danger">注：以整数形式表示,总数不能超过70</small>
+											</div>
+										</form>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">取
+											消</button>
+										<button type="button" class="btn btn-primary" id="commodity_edit">确
+											定</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 删除角色的Modal -->
+						<div class="modal fade" id="delete-commodity-dialog" tabindex="-1" role="dialog"
+							 aria-labelledby="delete-commodity-dialog-title" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title">删除奖品</h5>
+										<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<p>确定要删除奖品 <span class="label label-primary"
+														 id="delete-role-name"></span> 吗？
+										</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">取
+											消</button>
+										<button type="button" class="btn btn-primary" id="sure-delete-commodity">确
+											定</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 表格工具栏 -->
+						<div class="row mt-4">
+							<div class="ibox-title col-12" style="display: flex;">
+								<div style="line-height:14px;">
+									<i class="fa fa-list fa-fw"></i>
+									<span>数据列表</span>
+								</div>
+							</div>
+						</div>
+						<!-- 系统参数表格 -->
+						<div class="row">
+							<div class="col-12 tb-data" id="sysparam-list-table">
+								<table class="table table-bordered table-hover" id="shop-table">
+									<thead>
+										<tr>
+											<th>商品名称</th>
+											<th>创建时间</th>
+											<th>商品类型</th>
+											<th>商品图片</th>
+											<th>积分额</th>
+											<th>大转盘百分比</th>
+											<th>是否需要快递</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody id="shop-table-body">
+										<!--<tr class="gradeX">											
+											<td>1213456564654</td>
+											<td>五花肉</td>
+											<td>五花肉</td>
+											<td><img src="imgs/avatar-1.jpg" alt="" width="100" height="50"/></td>
+											<td>520斤</td>
+											<td>好吃的</td>
+											<td>好吃的</td>
+											<td>好吃的</td>
+											<td>5</td>
+											<td>未上架</td>
+											<td>
+												<a href="ms_shop_Integral_handle.html" class="btn offset-1 btn_style btn-sm">详情</a>
+												<a href="####" class="btn offset-1 btn_style btn-sm">上架</a>
+												<a href="####" class="btn offset-1 btn_style btn-sm" hidden="">下架</a>
+												<a href="####" class="btn offset-1 btn_style btn-sm">删除</a>
+											</td>
+										</tr>
+										<tr class="gradeX">
+											<td>1213456564654</td>
+											<td>五花肉</td>
+											<td>五花肉</td>
+											<td>五花肉</td>
+											<td>520斤</td>
+											<td>好吃的</td>
+											<td>好吃的</td>
+											<td>好吃的</td>
+											<td>5</td>
+											<td>未上架</td>
+											<td>
+												<a href="####" class="btn offset-1 btn_style btn-sm">详情</a>
+												<a href="####" class="btn offset-1 btn_style btn-sm" hidden="">上架</a>
+												<a href="####" class="btn offset-1 btn_style btn-sm">下架</a>
+												<a href="####" class="btn offset-1 btn_style btn-sm">删除</a>
+											</td>
+										</tr>-->
+									</tbody>
+								</table>
+							</div>
+							<div style="display: flex;justify-content: space-between;" class="col-12">
+								<div class="new_input">
+									<input type="checkbox" name="" id="" value="" /> 全选
+								</div>
+								<div class="new_btn_box">
+									<button class="btn btn-info">导出</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- JavaScript files-->
+		<script src="./plugins/jquery-3.4.0/jquery-3.4.0.min.js"></script>
+		<script src="./plugins/popper.js/popper.min.js"></script>
+		<script src="./plugins/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+		<script src="./plugins/jquery.cookie/jquery.cookie.js"></script>
+		<script src="./plugins/jquery-validation/jquery.validate.min.js"></script>
+		<script src="./plugins/toastr-2.1.4/toastr.min.js"></script>
+		<script src="./plugins/data-tables/data-tables-1.10.18/js/jquery.dataTables.min.js"></script>
+		<script src="./plugins/data-tables/data-tables-1.10.18/js/dataTables.bootstrap4.min.js"></script>
+
+		<!-- public -->
+		<script src="js/public.js"></script>
+		<!-- self -->
+		<script src="js/big_wheel_prize.js"></script>
+		<script>
+		</script>
+
+	</body>
+
+</html>

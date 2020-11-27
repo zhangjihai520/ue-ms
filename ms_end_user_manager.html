@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>终端用户管理</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="robots" content="all,follow">
+
+		<link rel="stylesheet" href="./plugins/bootstrap-4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="./plugins/toastr-2.1.4/toastr.min.css">
+		<link rel="stylesheet" href="./plugins/data-tables/data-tables-1.10.18/css/dataTables.bootstrap4.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="shortcut icon" href="imgs/favicon.ico">
+		<!-- Tweaks for older IEs-->
+		<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+	</head>
+
+	<body class="gray-bg">
+
+		<div class="wrapper wrapper-content">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>终端用户列表</h5>
+				</div>
+				<div class="ibox-content">
+					<div class="container-fluid">
+						<!-- 筛选栏 -->
+						<div class="row">
+							<div class="col-12">
+								<div class="form-inline">
+									<!-- 键 -->
+									<div class="form-group col-auto">
+										<label class="control-label">用户搜索：</label>
+										<select name="" class="form-control" id="select_name">
+											<option value="1">姓名</option>
+											<option value="2">昵称</option>
+										</select>
+										<input type="text" id="user_name" class="form-control" placeholder="请输入">
+									</div>
+									<!-- 值 -->
+									<!--<div class="form-group col-auto">
+										<label for="" class="control-label">用户认证：</label>
+										<select class="form-control">
+											<option>25154264615861</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>
+										</select>
+									</div>-->
+									<div class="form-group col-auto">
+										<label for="" class="control-label">用户注册时间：</label>
+										<input type="date" name="sys-value" id="join_start_time" class="form-control" placeholder="格式：YYY-MM-DD">
+										<span>&nbsp;至&nbsp;</span>
+										<input type="date" name="sys-value" id="join_end_time" class="form-control" placeholder="格式：YYY-MM-DD">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<div class="form-inline">
+									<div class="form-group col-auto">
+										<label for="" class="control-label">用户等级：</label>
+										<select class="form-control" id="user_level">
+									
+										</select>
+									</div>
+									<!--<div class="form-group col-auto">
+										<label for="" class="control-label">用户所在地：</label>
+										<input type="text" name="sys-value" id="user_address" class="form-control" placeholder="请输入地址">
+
+									</div>-->
+									<div class="form-group col-auto">
+										<button type="button" name="" id="user_reset" class="btn btn-primary  link-resource">重置</button>
+									</div>
+									<div class="form-group col-auto">
+										<button type="button" name="" id="user_search" class="btn btn-primary ">查 询</button>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<!--<div class="row">
+							<div class="col-12">
+								<div class="form-inline">
+									<div class="form-group col-auto">
+										<label for="" class="control-label">用户等级：</label>
+										<select class="form-control" id="user_level">
+									
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>-->
+						<!-- 表格工具栏 -->
+						<div class="row mt-4">
+							<div class="ibox-title col-12" style="display: flex;">
+								<div style="line-height:14px;">
+									<i class="fa fa-list fa-fw"></i>
+									<span>数据列表</span>
+								</div>
+							</div>
+						</div>
+						<!-- 系统参数表格 -->
+						<div class="row">
+							<div class="col-12 tb-data" id="sysparam-list-table">
+								<table class="table table-bordered table-hover" id="user-manager-table">
+									<thead>
+										<tr>
+											<th>姓名/昵称</th>
+											<th>手机号码</th>										
+											<th>用户等级</th>
+											<!--<th>所在城市</th>-->
+											<th>注册时间</th>
+											<th>操作</th>
+											
+										</tr>
+									</thead>
+									<tbody id="user-table-body">
+										<tr class="gradeX">
+										
+											<td>张大海</td>
+											<td>啊啊啊</td>
+										
+									
+										
+											<td>LV3</td>
+											<!--<td>南昌</td>-->
+											<td>2019.08.09</td>
+											<td>
+												<a href="ms_end_user_detail.html" class="btn btn_style btn-sm">详情</a>
+												<a href="####" class="btn btn_style btn-sm">更多</a>
+											</td>
+										</tr>
+										<tr class="gradeX">
+											
+											<td>张小海</td>
+											<td>啊啊啊</td>
+										
+											
+											<td>LV2</td>
+											<!--<td>南昌</td>-->
+											<td>2019.08.09</td>
+											<td>
+												<a href="####" class="btn btn_style btn-sm">详情</a>
+												<a href="####" class="btn btn_style btn-sm">更多</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!--<div style="display: flex;justify-content: space-between;" class="col-12">
+								<div class="new_input">
+									<input type="checkbox" name="" id="" value="" /> 全选
+								</div>
+								<div class="new_btn_box">
+									<button class="btn btn-info">发短信</button>
+									<button class="btn btn-info">发券</button>
+									<button class="btn btn-info">打标签</button>
+									<button class="btn btn-info">导出</button>
+								</div>
+							</div>-->
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- JavaScript files-->
+		<script src="./plugins/jquery-3.4.0/jquery-3.4.0.min.js"></script>
+		<script src="./plugins/popper.js/popper.min.js"></script>
+		<script src="./plugins/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+		<script src="./plugins/jquery.cookie/jquery.cookie.js"></script>
+		<script src="./plugins/jquery-validation/jquery.validate.min.js"></script>
+		<script src="./plugins/toastr-2.1.4/toastr.min.js"></script>
+		<script src="./plugins/data-tables/data-tables-1.10.18/js/jquery.dataTables.min.js"></script>
+		<script src="./plugins/data-tables/data-tables-1.10.18/js/dataTables.bootstrap4.min.js"></script>
+
+		<!-- public -->
+		<script src="js/public.js"></script>
+		<!-- self -->
+		<script src="js/ms_end_user_manager.js"></script>
+		<script>
+		</script>
+
+	</body>
+
+</html>

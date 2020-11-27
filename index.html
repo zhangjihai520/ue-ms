@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="renderer" content="webkit">
+
+	<title>UE数据管理平台</title>
+
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+	<!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+
+	<link rel="shortcut icon" href="imgs/favicon.ico">
+	<link href="plugins/bootstrap-3.3.7/css/bootstrap.min.css?v=3.3.7" rel="stylesheet">
+	<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css?v=4.7.0" rel="stylesheet">
+	<link href="css/animate.css" rel="stylesheet">
+	<link href="css/style.css?v=4.1.0" rel="stylesheet">
+	<link href="css/custom.css" rel="stylesheet">
+
+</head>
+
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+	<div id="wrapper">
+
+		<!--左侧导航开始-->
+		<nav class="navbar-default navbar-static-side" role="navigation">
+			<div class="nav-close"><i class="fa fa-times-circle"></i>
+			</div>
+			<div class="sidebar-collapse">
+				<ul class="nav" id="side-menu">
+					<!-- 菜单栏头部 -->
+					<li class="nav-header">
+						<div class="logo-image">
+							<img src="./imgs/logo.png" class="img-responsive" alt="logo">
+						</div>
+						<div class="dropdown profile-element">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+								<span class="clear">
+									<span class="block m-t-xs" style="font-size:16px;">
+										<strong class="font-bold">UE数据管理平台</strong>
+									</span>
+								</span>
+							</a>
+						</div>
+						<div class="logo-element">
+							<i class="fa fa-list fa-fw" aria-hidden="true"></i>
+						</div>
+					</li>
+					<!-- 主页 -->
+					<li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+						<span class="ng-scope">主页</span>
+					</li>
+					<li>
+						<a class="J_menuItem" href="my_desk.html">
+							<input type="hidden" class="myParentId" value="">
+							<i class="fa fa-laptop fa-fw"></i>
+							<span class="nav-label">我的工作台</span>
+						</a>
+					</li>
+					<li class="line dk"></li>
+					<!-- 系统 -->
+					<li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+						<span class="ng-scope">系统</span>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa fa-th-list"></i>
+							<span class="nav-label">基础数据</span>
+							<span class="fa arrow"></span>
+						</a>
+						<ul class="nav nav-second-level">
+							<li>
+								<a class="J_menuItem" href="###">
+									<i class="fa fa-user-md fa-fw"></i>
+									<span class="nav-label">油号管理</span>
+								</a>
+							</li>
+							<li>
+								<a class="J_menuItem" href="###">
+									<i class="fa fa-heartbeat fa-fw"></i>
+									<span class="nav-label">牌价管理</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa fa-group"></i>
+							<span class="nav-label">供应商管理</span>
+							<span class="fa arrow"></span>
+						</a>
+						<ul class="nav nav-second-level">
+							<li>
+								<a class="J_menuItem" href="ms_supplier_list.html">
+									<i class="fa fa-align-justify fa-fw"></i>
+									<span class="nav-label">供应商列表</span>
+								</a>
+							</li>
+							<li>
+								<a class="J_menuItem" href="ms_supplier_add.html">
+									<i class="fa fa-user-plus fa-fw"></i>
+									<span class="nav-label">供应商添加</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa fa-wrench"></i>
+							<span class="nav-label">系统管理</span>
+							<span class="fa arrow"></span>
+						</a>
+						<ul class="nav nav-second-level">
+							<li>
+								<a class="J_menuItem" href="ms_syslog_mg.html">
+									<i class="fa fa-file-text fa-fw"></i>
+									<span class="nav-label">系统日志</span>
+								</a>
+							</li>
+							<li>
+								<a class="J_menuItem" href="sy_sysparam_mg.html">
+									<i class="fa fa-th fa-fw"></i>
+									<span class="nav-label">系统参数</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="###">
+							<i class="fa fa fa-sitemap"></i>
+							<span class="nav-label">权限管理</span>
+							<span class="fa arrow"></span>
+						</a>
+						<ul class="nav nav-second-level">
+							<li>
+								<a class="J_menuItem" href="ms_user_mg.html">
+									<i class="fa fa-user fa-fw"></i>
+									<span class="nav-label">账户管理</span>
+								</a>
+							</li>
+							<li>
+								<a class="J_menuItem" href="ms_role_mg.html">
+									<i class="fa fa-id-card fa-fw"></i>
+									<span class="nav-label">角色管理</span>
+								</a>
+							</li>
+							<li>
+								<a class="J_menuItem" href="ms_resource_mg.html">
+									<i class="fa fa-puzzle-piece fa-fw"></i>
+									<span class="nav-label">资源管理</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="line dk"></li>
+				</ul>
+			</div>
+		</nav>
+		<!--左侧导航结束-->
+		<!--右侧部分开始-->
+		<div id="page-wrapper" class="gray-bg dashbard-1" style="overflow:hidden">
+			<!-- 头部状态栏 -->
+			<div class="row  border-bottom">
+				<nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+					<!-- 折叠左侧菜单面板的按钮 -->
+					<div class="navbar-header">
+						<a class="navbar-minimalize minimalize-styl-2 btn btn-info " href="#">
+							<i class="fa fa-bars"></i> </a>
+					</div>
+					<!-- 右边的一些工具按钮 -->
+					<ul class="nav navbar-top-links navbar-right">
+						<!-- 账户信息 -->
+						<li class="dropdown" id="nav-item-user-avatar">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+								<img src="./imgs/avatar-1.jpg" class="img-circle" id="user-avatar" alt="user avatar">
+								<strong id="userName">风清扬</strong>
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu center-block">
+								<li>
+									<a class="" href="" id="user-info-btn" data-toggle="modal"
+                                        data-target="#user-info-dialog">
+                                        <span class="small">账户信息</span>
+                                    </a>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<a class="" href="" id="change-password-btn" data-toggle="modal"
+                                        data-target="#change-password-dialog">
+                                        <span class="small">修改密码</span>
+                                    </a>
+								</li>
+							</ul>
+						</li>
+						<!-- 注销 -->
+						<li>
+							<a href="javascript:;" class="nav-link logout">
+								<i class="fa fa-sign-out"></i><span class="d-none d-sm-inline">退出</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<!-- 内容部分 -->
+			<div class="row J_mainContent" id="content-main">
+				<iframe id="J_iframe" width="100%" height="100%" src="my_desk.html" frameborder="0"
+					data-id="my-desk.html" seamless></iframe>
+			</div>
+			<!-- 账户信息modal窗口 -->
+			<div class="modal fade" id="user-info-dialog" tabindex="-1" role="dialog"
+				aria-labelledby="user-info-dialog-title" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">账户信息</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<label for="user-info-name" class="col-sm-3 col-form-label">账户名：</label>
+									<div class="col-sm-9">
+										<input type="text" readonly class="form-control" name="user-info-name"
+											id="user-info-name" placeholder="">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="user-info-create-time" class="col-sm-3 col-form-label">注册时间：</label>
+									<div class="col-sm-9">
+										<input type="text" readonly class="form-control" name="user-info-create-time"
+											id="user-info-create-time" placeholder="">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="user-info-register-ip" class="col-sm-3 col-form-label">注册IP：</label>
+									<div class="col-sm-9">
+										<input type="text" readonly class="form-control" name="user-info-register-ip"
+											id="user-info-register-ip" placeholder="">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="user-info-login-num" class="col-sm-3 col-form-label">登录次数：</label>
+									<div class="col-sm-9">
+										<input type="text" readonly class="form-control" name="user-info-login-num"
+											id="user-info-login-num" placeholder="">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="user-info-last-login-time"
+										class="col-sm-3 col-form-label">最后登录时间：</label>
+									<div class="col-sm-9">
+										<input type="text" readonly class="form-control"
+											name="user-info-last-login-time" id="user-info-last-login-time"
+											placeholder="">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="user-info-last-login-ip" class="col-sm-3 col-form-label">最后登录IP：</label>
+									<div class="col-sm-9">
+										<input type="text" readonly class="form-control" name="user-info-last-login-ip"
+											id="user-info-last-login-ip" placeholder="">
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 修改密码modal窗口 -->
+			<div class="modal fade" id="change-password-dialog" tabindex="-1" role="dialog"
+				aria-labelledby="change-password-dialog-title" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">修改密码</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form>
+								<div class="form-group">
+									<label for="old-password">原密码</label>
+									<input type="password" readonly class="form-control" name="old-password" id="old-password"
+										placeholder="">
+								</div>
+								<div class="form-group">
+									<label for="new-password">新密码</label>
+									<input type="password" class="form-control" name="new-password" id="new-password"
+										aria-describedby="new-password-tip" placeholder="">
+									<small id="new-password-tip"
+										class="form-text text-danger">注：为了账户安全，密码长度不得小于8位，必须包含大写字母、小写字母和数字</small>
+								</div>
+								<div class="form-group">
+									<label for="sure-new-password">确认新密码</label>
+									<input type="password" class="form-control" name="sure-new-password"
+										id="sure-new-password" aria-describedby="sure-new-password-tip" placeholder="">
+									<small id="sure-new-password-tip"
+										class="form-text text-danger">注：为了账户安全，密码长度不得小于8位，必须包含大写字母、小写字母和数字</small>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">取
+								消</button>
+							<button type="button" class="btn btn-primary" id="sure-change-password">确
+								定</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--右侧部分结束-->
+	</div>
+
+	<!-- 全局js -->
+	<script src="plugins/jquery-2.1.4/jquery.min.js?v=2.1.4"></script>
+	<script src="plugins/bootstrap-3.3.7/js/bootstrap.min.js?v=3.3.7"></script>
+	<script src="plugins/metisMenu/jquery.metisMenu.js"></script>
+	<script src="plugins/jquery-slimscroll-1.3.8/jquery.slimscroll.min.js"></script>
+	<script src="plugins/layer/layer.min.js"></script>
+	<script src="./plugins/js-md5/md5.min.js"></script>
+
+	<!-- public -->
+	<script src="js/public.js"></script>
+	<!-- self -->
+	<script src="js/index.js"></script>
+
+</body>
+
+</html>

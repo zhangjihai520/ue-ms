@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>油库油价</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+
+    <link rel="stylesheet" href="./plugins/bootstrap-4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./plugins/toastr-2.1.4/toastr.min.css">
+    <link rel="stylesheet" href="./plugins/data-tables/data-tables-1.10.18/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="shortcut icon" href="imgs/favicon.ico">
+    <link rel="stylesheet" href="./plugins/MapGrid/css/map.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <style>
+        .oil-price-set-body {
+            margin-bottom: 40px;
+            margin-left: 5.5%;
+            border: 1px solid grey;
+            border-radius: 10px;
+        }
+        .floatRight {
+            margin-left: 35%;
+        }
+        .text-index {
+            text-indent: 2em;
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+
+    <div class="wrapper wrapper-content">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>油库油价</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="container-fluid">
+                    <!-- 筛选栏 -->
+                    <div class="row">
+                        <div class="col-12">
+                        </div>
+                    </div>
+                    <!-- 表格工具栏 -->
+                    <div class="row">
+                        <div class="col-12 tb-toolbar" id="user-list-table-toolbar">
+                            <div class="btn-group float-right">
+                                <!-- <button class="btn btn-primary" type="button">新 增</button> -->
+                                <!-- 新增员工的按钮 -->
+
+                                <!-- 下面预留扩展的位置 -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 账户表格 -->
+                    <div class="row">
+                        <div class="col-12 tb-data" id="user-list-table">
+                            <div class="modal-body col-12">
+                                <form>
+                                    <div class="form-row" id="oil-price-set">
+                                        <!--<div class="col-5 oil-price-set-body" id="122">-->
+                                            <!--<div class="modal-header">-->
+                                                <!--<h5 class="modal-title">0#柴油</h5>-->
+                                            <!--</div>-->
+                                            <!--<div class="form-group suOilpriceId" id="124">-->
+                                                <!--<div class="modal-header">-->
+                                                    <!--<div class="col-6">-->
+                                                        <!--<div class="form-row">-->
+                                                            <!--<div class="col-5">-->
+                                                                <!--起点量（吨）:-->
+                                                            <!--</div>-->
+                                                            <!--<div class="col-6">-->
+                                                                <!--<input type="text" class="form-control" name="startVolume">-->
+                                                            <!--</div>-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="col-6">-->
+                                                        <!--<div class="form-row">-->
+                                                            <!--<div class="col-5">-->
+                                                                <!--油价（元/吨）:-->
+                                                            <!--</div>-->
+                                                            <!--<div class="col-6">-->
+                                                                <!--<input type="text" class="form-control" name="oilPrice">-->
+                                                            <!--</div>-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="form-group">-->
+                                                <!--<div class="modal-header">-->
+                                                    <!--<div class="col-6">-->
+                                                        <!--<div class="form-row">-->
+                                                            <!--<div class="col-5">-->
+                                                                <!--起点量（吨）:-->
+                                                            <!--</div>-->
+                                                            <!--<div class="col-6">-->
+                                                                <!--<input type="text" class="form-control">-->
+                                                            <!--</div>-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="col-6">-->
+                                                        <!--<div class="form-row">-->
+                                                            <!--<div class="col-5">-->
+                                                                <!--油价（元/吨）:-->
+                                                            <!--</div>-->
+                                                            <!--<div class="col-6">-->
+                                                                <!--<input type="text" class="form-control">-->
+                                                            <!--</div>-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="form-group">-->
+                                                <!--<div class="modal-header">-->
+                                                    <!--<div class="col-6">-->
+                                                        <!--<div class="form-row">-->
+                                                            <!--<div class="col-5">-->
+                                                                <!--起点量（吨）:-->
+                                                            <!--</div>-->
+                                                            <!--<div class="col-6">-->
+                                                                <!--<input type="text" class="form-control">-->
+                                                            <!--</div>-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="col-6">-->
+                                                        <!--<div class="form-row">-->
+                                                            <!--<div class="col-5">-->
+                                                                <!--油价（元/吨）:-->
+                                                            <!--</div>-->
+                                                            <!--<div class="col-6">-->
+                                                                <!--<input type="text" class="form-control">-->
+                                                            <!--</div>-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="form-group">-->
+                                                <!--<div class="modal-header">-->
+                                                    <!--<div class="col-6">-->
+                                                        <!--<div class="form-row">-->
+                                                            <!--<div class="col-5">-->
+                                                                <!--起点量（吨）:-->
+                                                            <!--</div>-->
+                                                            <!--<div class="col-6">-->
+                                                                <!--<input type="text" class="form-control">-->
+                                                            <!--</div>-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="col-6">-->
+                                                        <!--<div class="form-row">-->
+                                                            <!--<div class="col-5">-->
+                                                                <!--油价（元/吨）:-->
+                                                            <!--</div>-->
+                                                            <!--<div class="col-6">-->
+                                                                <!--<input type="text" class="form-control">-->
+                                                            <!--</div>-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" id="close">返回</button>
+                                <button type="button" class="btn btn-primary" id="sure-oil-price">修改</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript files-->
+    <script src="./plugins/jquery-3.4.0/jquery-3.4.0.min.js"></script>
+    <script src="./plugins/popper.js/popper.min.js"></script>
+    <script src="./plugins/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+    <script src="./plugins/jquery.cookie/jquery.cookie.js"></script>
+    <script src="./plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="./plugins/toastr-2.1.4/toastr.min.js"></script>
+    <script src="./plugins/data-tables/data-tables-1.10.18/js/jquery.dataTables.min.js"></script>
+    <script src="./plugins/data-tables/data-tables-1.10.18/js/dataTables.bootstrap4.min.js"></script>
+    <script src="./plugins/js-md5/md5.min.js"></script>
+
+    <!-- public -->
+    <script src="js/public.js"></script>
+    <!-- self -->
+    <script src="js/step_oils_price_setting.js"></script>
+
+</body>
+
+</html>

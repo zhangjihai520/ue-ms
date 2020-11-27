@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>优惠券详情</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="robots" content="all,follow">
+
+		<link rel="stylesheet" href="./plugins/bootstrap-4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="./plugins/toastr-2.1.4/toastr.min.css">
+		<link rel="stylesheet" href="./plugins/data-tables/data-tables-1.10.18/css/dataTables.bootstrap4.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="shortcut icon" href="imgs/favicon.ico">
+		<!-- Tweaks for older IEs-->
+		<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+	</head>
+
+	<body class="gray-bg">
+		<div class="wrapper wrapper-content">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>优惠券详情</h5>
+				</div>
+				<div class="ibox-content">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-12">
+								<div class="col-12 form-inline">
+									<div class="col-3 form-group">
+										<p class="control-label user_detail_p">优惠券名称：</p>
+										<p class="form-control user_detail_p" id="discount_name"></p>
+									</div>
+									<div class="form-group col-3">
+										<p class="control-label user_detail_p">优惠类型：</p>
+										<p class="form-control user_detail_p" id="discount_type">满减</p>
+									</div>
+									<div class="form-group col-3">
+										<p class="control-label user_detail_p">使用条件：</p>
+										<p class="form-control user_detail_p" id="discount_use_fn">满200</p>
+									</div>
+									<div class="form-group col-3">
+										<p class="control-label user_detail_p">面额：</p>
+										<p class="form-control user_detail_p" id="discount_amount">50</p>
+									</div>
+								</div>
+								<div class="col-12 form-inline">
+									<div class="col-3 form-group">
+										<p class="control-label user_detail_p">有效期：</p>
+										<p class="form-control user_detail_p" id="discount_time">1995.3.2</p>
+									</div>
+									<div class="form-group col-3">
+										<p class="control-label user_detail_p">状态：</p>
+										<p class="form-control user_detail_p" id="discount_status">发行中</p>
+									</div>
+									<div class="col-3 form-group">
+										<p class="control-label user_detail_p">创建时间（更改时间）：</p>
+										<p class="form-control user_detail_p" id="discount_creatTime">1995.3.2</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row mt-4">
+							<div class="ibox-title col-12" style="display: flex;">
+								<div style="line-height:14px;">
+									<i class=""></i>
+									<span>优惠券明细</span>
+								</div>
+							</div>
+						</div>
+						<!-- 系统参数表格 -->
+						<div class="row">
+							<div class="col-12 tb-data" id="sysparam-list-table">
+								<table class="table table-bordered table-hover" id="discount-manager-table">
+									<thead>
+										<tr>										
+											<th>优惠券ID</th>
+											<th>所属用户</th>
+											<th>领取方式</th>
+											<th>领取时间</th>
+											<th>使用时间</th>
+					
+											<th>优惠券状态</th>							
+											<!--<th>操作</th>-->
+										</tr>
+									</thead>
+									<tbody id="discount-table-body">
+										<tr class="gradeX">
+											
+											<td>54584546464</td>
+											<td>张大海</td>
+											<td>app</td>
+											<td>2019.10.2</td>
+											<td>2019.10.3</td>
+								
+											<td>已使用</td>
+											<!--<td>								
+												<a href="####" class="btn btn_style btn-sm">删除</a>
+											</td>-->
+											
+										</tr>
+										<tr class="gradeX">
+											
+											<td>54584546464</td>
+											<td>张大海</td>
+											<td>app</td>
+											<td>2019.10.2</td>
+											<td>2019.10.3</td>
+									
+											<td>已使用</td>
+											<!--<td>
+												<a href="####" class="btn btn_style btn-sm">删除</a>
+											</td>-->
+											
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div style="display: flex;justify-content: space-between;" class="col-12">
+								<div class="new_input">
+									<input type="checkbox" name="" id="" value="" /> 全选
+								</div>
+								<!--<div class="new_btn_box">
+									<button class="btn btn-info">导出全部数据</button>
+									<button class="btn btn-info">导出本页数据</button>
+									<button class="btn btn-info">导出已选数据</button>
+								</div>-->
+							</div>
+
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+
+		<!-- JavaScript files-->
+		<script src="./plugins/jquery-3.4.0/jquery-3.4.0.min.js"></script>
+		<script src="./plugins/popper.js/popper.min.js"></script>
+		<script src="./plugins/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+		<script src="./plugins/jquery.cookie/jquery.cookie.js"></script>
+		<script src="./plugins/jquery-validation/jquery.validate.min.js"></script>
+		<script src="./plugins/toastr-2.1.4/toastr.min.js"></script>
+		<script src="./plugins/data-tables/data-tables-1.10.18/js/jquery.dataTables.min.js"></script>
+		<script src="./plugins/data-tables/data-tables-1.10.18/js/dataTables.bootstrap4.min.js"></script>
+
+		<!-- public -->
+		<script src="js/public.js"></script>
+		<!-- self -->
+		<script src="js/ms_discount_coupon_detail.js"></script>
+		<script>
+			
+		</script>
+
+	</body>
+
+</html>

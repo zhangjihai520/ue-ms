@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>供应商详情</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="robots" content="all,follow">
+
+		<link rel="stylesheet" href="./plugins/bootstrap-4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="./plugins/toastr-2.1.4/toastr.min.css">
+		<link rel="stylesheet" href="./plugins/data-tables/data-tables-1.10.18/css/dataTables.bootstrap4.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="shortcut icon" href="imgs/favicon.ico">
+		<!-- Tweaks for older IEs-->
+		<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+	</head>
+
+	<body class="gray-bg">
+
+		<div class="wrapper wrapper-content">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>基本信息</h5>
+				</div>
+				<div class="ibox-content">
+					<div class="container-fluid">
+						<!-- 筛选栏 -->
+						<div class="row">
+							<div class="col-12">
+								<div class="row">
+									<div class="col-6">
+										<div class="row">
+											<p class="col-6 supplier_detail_style">供应商名称</p>
+											<p class="col-6 supplier_detail_style" id="supplie_name"></p>
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="row">
+											<p class="col-6 supplier_detail_style">供应商类型</p>
+											<p class="col-6 supplier_detail_style" id="supplier_type">185245612</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-12">
+								<div class="row">
+									<div class="col-6">
+										<div class="row">
+											<p class="col-6 supplier_detail_style">自提采购单收款方式</p>
+											<p class="col-6 supplier_detail_style " id="supplie_login_name"></p>
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="row">
+											<p class="col-6 supplier_detail_style">供应商税号</p>
+											<p class="col-6 supplier_detail_style"id="supplie_duty">1512785465487454</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="ibox-title col-12" style="display: flex;">
+								<div style="line-height:14px;">
+									<span>企业信息</span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<div class="row">
+									<div class="col-6 supplier_detail_style">工商营业执照注册号/统一社会信用代码</div>
+									<div class="col-6 supplier_detail_style" id="supplie_credit_code"></div>
+								</div>
+							</div>
+							<div class="col-12">
+								<div class="row">
+									<div class="col-6 supplier_detail_style">供应商地址</div>
+									<div class="col-6 supplier_detail_style" id="supplie_address"></div>
+								</div>
+							</div>
+							<div class="col-12">
+								<div class="row">
+									<div class="col-6 supplier_detail_style">供应商电话</div>
+									<div class="col-6 supplier_detail_style" id="supplie_phone"></div>
+								</div>
+							</div>
+							<div class="col-12">
+								<div class="row">
+									<div class="col-6 supplier_photos">营业执照电子版</div>
+									<div class="col-6 supplier_photos" >
+										<img src="" alt="" id="supplie_photo" width="200" height="200"/>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="ibox-title col-12" style="display: flex;">
+								<div style="line-height:14px;">
+									<span>开户信息</span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<div class="row">
+									<div class="col-3 supplier_detail_style">开户许可证编码</div>
+									<div class="col-3 supplier_detail_style" id="supplie_licence"></div>
+									<div class="col-3 supplier_detail_style">开户银行</div>
+									<div class="col-3 supplier_detail_style" id="supplie_bank"></div>
+								</div>
+							</div>
+							<div class="col-12">
+								<div class="row">
+									<div class="col-3 supplier_detail_style">账户名称</div>
+									<div class="col-3 supplier_detail_style" id="supplie_licence_name"></div>
+									<div class="col-3 supplier_detail_style">银行账号</div>
+									<div class="col-3 supplier_detail_style" id="supplie_code"></div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="ibox-title col-12" style="display: flex;">
+								<div style="line-height:14px;">
+									<span>法人信息</span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<div class="row">
+									<div class="col-3 supplier_detail_style">法人身份证姓名</div>
+									<div class="col-3 supplier_detail_style" id="supplie_legalerName"></div>
+									<div class="col-3 supplier_detail_style">法人身份证号码</div>
+									<div class="col-3 supplier_detail_style" id="supplie_legalerCode"></div>
+								</div>
+							</div>
+							<div class="col-12">
+								<div class="row">
+									<div class="col-6 supplier_photos">法人身份证电子版</div>
+									<div class="col-6 supplier_photos">
+										<img src="" alt="" width="200" height="200" align="center" id="supplie_legaler_photoBack"/>
+										<img src="" alt="" width="200" height="200" align="center" id="supplie_legaler_photoPre"/>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="ibox-title col-12" style="display: flex;">
+								<div style="line-height:14px;">
+									<span>管理员身份信息</span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<div class="row">
+									<div class="col-3 supplier_detail_style">管理员姓名</div>
+									<div class="col-3 supplier_detail_style" id="supplie_manger"></div>
+									<div class="col-3 supplier_detail_style">管理员电话号码</div>
+									<div class="col-3 supplier_detail_style" id="supplie_mangerPhone"></div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="ibox-title col-12" style="display: flex;">
+								<div style="line-height:14px;">
+									<span>经营范围</span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<div class="row" id="supplie_scope">
+							
+								</div>
+							</div>
+
+						</div>
+						<!--<div class="row">
+							<div class="ibox-title col-12" style="display: flex;">
+								<div style="line-height:14px;">
+									<span>账户信息</span>
+								</div>
+							</div>
+						</div>-->
+						<!--<div class="row">
+							<div class="col-12">
+								<div class="row">
+									<div class="col-4 supplier_detail_style">账户名称</div>
+									<div class="col-4 supplier_detail_style">开户银行</div>
+									<div class="col-4 supplier_detail_style">银行账号</div>
+								</div>
+								<div class="row">
+									<div class="col-4 supplier_detail_style">哈皮公司</div>
+									<div class="col-4 supplier_detail_style">中国银行</div>
+									<div class="col-4 supplier_detail_style">362444548515215465</div>
+								</div>
+								<div class="row">
+									<div class="col-4 supplier_detail_style">哈皮公司</div>
+									<div class="col-4 supplier_detail_style">建设银行</div>
+									<div class="col-4 supplier_detail_style">362444548515215465</div>
+								</div>
+							</div>
+						</div>-->
+						<div class="row supplier_table">
+							<div class="col-6">
+								<button class="btn btn-warning link-resource pull-right">下载</button>
+							</div>
+							<div class="col-6">
+								<button class="btn btn-warning link-resource" id="close">关闭</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- JavaScript files-->
+		<script src="./plugins/jquery-3.4.0/jquery-3.4.0.min.js"></script>
+		<script src="./plugins/popper.js/popper.min.js"></script>
+		<script src="./plugins/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+		<script src="./plugins/jquery.cookie/jquery.cookie.js"></script>
+		<script src="./plugins/jquery-validation/jquery.validate.min.js"></script>
+		<script src="./plugins/toastr-2.1.4/toastr.min.js"></script>
+		<script src="./plugins/data-tables/data-tables-1.10.18/js/jquery.dataTables.min.js"></script>
+		<script src="./plugins/data-tables/data-tables-1.10.18/js/dataTables.bootstrap4.min.js"></script>
+
+		<!-- public -->
+		<script src="js/public.js"></script>
+		<!-- self -->
+		<script src="js/ms_supplier_detail.js"></script>
+		<script>
+		</script>
+
+	</body>
+
+</html>

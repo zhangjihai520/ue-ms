@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>新增油库</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+
+    <link rel="stylesheet" href="./plugins/bootstrap-4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./plugins/toastr-2.1.4/toastr.min.css">
+    <link rel="stylesheet" href="./plugins/data-tables/data-tables-1.10.18/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="shortcut icon" href="imgs/favicon.ico">
+    <link rel="stylesheet" href="./plugins/MapGrid/css/map.css">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <style>
+        .details .form-row {
+            line-height: 35px;
+        }
+        .details .col-8 {
+            text-align: right;
+        }
+        .centered {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+
+    <div class="wrapper wrapper-content">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>添加油库</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="container-fluid">
+                    <!-- 筛选栏 -->
+                    <div class="row">
+                        <div class="col-12">
+                        </div>
+                    </div>
+                    <!-- 表格工具栏 -->
+                    <div class="row">
+                        <div class="col-12 tb-toolbar" id="user-list-table-toolbar">
+                            <div class="btn-group float-right">
+                                <!-- <button class="btn btn-primary" type="button">新 增</button> -->
+                                <!-- 新增员工的按钮 -->
+
+                                <!-- 下面预留扩展的位置 -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 账户表格 -->
+                    <div class="row">
+                        <div class="col-12 tb-data" id="user-list-table">
+                            <div class="modal-body col-6 offset-3">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="add-oil-depot-name">
+                                            <small class="text-danger">* </small>油库名
+                                        </label>
+                                        <input type="text" class="form-control" name="add-oil-depot-name"
+                                               id="add-oil-depot-name" aria-describedby="add-oil-depot-name-tip"
+                                               placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="add-oil-contact">
+                                            <small class="text-danger">* </small>油库负责人
+                                        </label>
+                                        <input type="text" class="form-control" name="add-oil-contact"
+                                               id="add-oil-contact" aria-describedby="add-oil-contact-tip"
+                                               placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="add-oil-contact-number">
+                                            <small class="text-danger">* </small>油库负责人电话
+                                        </label>
+                                        <input type="text" class="form-control" name="add-oil-contact-number"
+                                               id="add-oil-contact-number" aria-describedby="add-oil-contact-number-tip"
+                                               placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="add-oil-depot-province">
+                                            <small class="text-danger">* </small>省-市-区
+                                        </label>
+                                        <div class="form-row">
+                                            <div class="col-3">
+                                                <select class="form-control province" name="province"
+                                                        id="add-oil-depot-province">
+                                                    <option value=""> --请选择-- </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-3 offset-1">
+                                                <select class="form-control city" name="city"
+                                                        id="add-oil-depot-city">
+                                                    <option value=""> --请选择-- </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-3 offset-1">
+                                                <select class="form-control district" name="district"
+                                                        id="add-oil-depot-district">
+                                                    <option value=""> --请选择-- </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="add-oil-depot-longitude">
+                                            <small class="text-danger">* </small>定位油库
+                                        </label>
+                                        <div class="map_body" >
+                                            <div id="mapContainer"></div>
+                                            <div id="tip">
+                                                <b>请输入关键字：</b>
+                                                <input type="text" id="keyword" name="keyword" value="" onkeydown='keydown(event)' style="width: 95%;" />
+                                                <div id="result1" name="result1"></div>
+                                            </div>
+                                            <div id="pos">
+                                                <b>鼠标左键在地图上单击获取坐标</b>
+                                                <div>X：<input type="text" id="lngX" name="lngX" value="" /> Y：<input type="text" id="latY" name="latY" value="" /></div>
+                                                <div>选中地址：<span id="city"></span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="display:none;">
+                                        <label for="add-oil-depot-longitude">
+                                            <small class="text-danger">* </small>坐标经度
+                                        </label>
+                                        <input type="text" class="form-control" name="add-oil-depot-longitude"
+                                               id="add-oil-depot-longitude" aria-describedby="add-oil-depot-longitude-tip"
+                                               oninput = "value=value.replace(/[^\d^\.]+/g,'')"
+                                               placeholder="" readonly>
+                                        <small id="add-oil-depot-longitude-tip"
+                                               class="form-text text-danger">注：点击出现地图，点击地图选择一个点</small>
+                                    </div>
+                                    <div class="form-group" style="display:none;">
+                                        <label for="add-oil-depot-latitude">
+                                            <small class="text-danger">* </small>坐标纬度
+                                        </label>
+                                        <input type="text" class="form-control" name="add-oil-depot-latitude"
+                                               id="add-oil-depot-latitude" aria-describedby="add-oil-depot-latitude-tip"
+                                               oninput = "value=value.replace(/[^\d^\.]+/g,'')"
+                                               placeholder="" readonly>
+                                        <small id="add-oil-depot-latitude-tip"
+                                               class="form-text text-danger">注：点击出现地图，点击地图选择一个点</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="add-oil-depot-address">
+                                            <small class="text-danger">* </small>详细地址
+                                        </label>
+                                        <input type="text" class="form-control" name="add-oil-depot-address"
+                                               id="add-oil-depot-address" aria-describedby="add-oil-depot-address-tip"
+                                               placeholder="">
+                                    </div>
+                                    <div class="form-group oil-depot-supplier" style="display: none">
+                                        <label for="add-oil-depot-supplier">
+                                            <small class="text-danger">* </small>油库供应商
+                                        </label>
+                                        <select class="form-control" name="add-oil-depot-supplier"
+                                                id="add-oil-depot-supplier">
+                                            <option value=""> --请选择-- </option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" id="close">返回
+                                    </button>
+                                <button type="button" class="btn btn-primary" id="sure-add-user">确
+                                    定</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript files-->
+    <script src="./plugins/jquery-3.4.0/jquery-3.4.0.min.js"></script>
+    <script src="./plugins/popper.js/popper.min.js"></script>
+    <script src="./plugins/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+    <script src="./plugins/jquery.cookie/jquery.cookie.js"></script>
+    <script src="./plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="./plugins/toastr-2.1.4/toastr.min.js"></script>
+    <script src="./plugins/data-tables/data-tables-1.10.18/js/jquery.dataTables.min.js"></script>
+    <script src="./plugins/data-tables/data-tables-1.10.18/js/dataTables.bootstrap4.min.js"></script>
+    <script src="./plugins/js-md5/md5.min.js"></script>
+    <!--<script src="./plugins/MapGrid/js/MapType.js"></script>-->
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.3&key=c1eb5436111397abaaf6572487aa7fa6"></script>
+    <script src="./plugins/MapGrid/js/map.js"></script>
+
+    <!-- public -->
+    <script src="js/public.js"></script>
+    <!-- self -->
+    <script src="js/oil_depot_list_add.js"></script>
+
+</body>
+
+</html>

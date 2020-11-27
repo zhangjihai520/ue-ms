@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>资源管理</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="robots" content="all,follow">
+
+		<link rel="stylesheet" href="./plugins/bootstrap-4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="./plugins/toastr-2.1.4/toastr.min.css">
+		<link rel="stylesheet" href="./plugins/data-tables/data-tables-1.10.18/css/dataTables.bootstrap4.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="shortcut icon" href="imgs/favicon.ico">
+		<!-- Tweaks for older IEs-->
+		<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+	</head>
+
+	<body class="gray-bg">
+
+		<div class="wrapper wrapper-content">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>资源列表</h5>
+				</div>
+				<div class="ibox-content">
+					<div class="container-fluid">
+						<!-- 筛选栏 -->
+						<div class="row">
+							<div class="col-12">
+								<form class="tb-filter" id="resource-list-filter">
+									<div class="form-row align-items-end">
+										<!-- 资源名 -->
+										<div class="form-group col-auto">
+											<label for="resource-name">资源名：</label>
+											<input type="text" name="resource-name" id="resource-name" class="form-control" placeholder="">
+										</div>
+										<!-- 资源类型 -->
+										<div class="form-group col-auto">
+											<label for="resource-type">资源类型：</label>
+											<select class="form-control" name="resource-type" id="resource-type">
+												<option value=""> --请选择-- </option>
+												<option value="0">目录</option>
+												<option value="1">菜单</option>
+												<option value="2">按钮</option>
+											</select>
+										</div>
+										<!-- 层级 -->
+										<div class="form-group col-auto">
+											<label for="resource-level">层级：</label>
+											<select class="form-control" name="resource-level" id="resource-level">
+												<option value=""> --请选择-- </option>
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+											</select>
+										</div>
+										<!-- 状态 -->
+										<div class="form-group col-auto">
+											<label for="resource-status">状态：</label>
+											<select class="form-control" name="resource-status" id="resource-status">
+												<option value=""> --请选择-- </option>
+												<option value="0">显示</option>
+												<option value="1">隐藏</option>
+											</select>
+										</div>
+										<!-- 查询按钮 -->
+										<div class="form-group col-auto">
+											<button type="button" name="query-resource" id="query-resource" class="btn btn-primary">查 询</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						<!-- 表格工具栏 -->
+						<div class="row">
+							<div class="col-12 tb-toolbar" id="resource-list-table-toolbar">
+								<div class="btn-group float-right">
+									<!-- <button class="btn btn-primary" type="button">新 增</button> -->
+									<!-- 新增资源的按钮 -->
+									<button disabled="disabled" type="button" id="add-resource" class="btn btn-primary add-resource" data-toggle="modal" data-target="#add-resource-dialog">
+                                    新 增
+                                </button>
+									<!-- 新增资源的Modal -->
+									<div class="modal fade" id="add-resource-dialog" tabindex="-1" role="dialog" aria-labelledby="add-resource-dialog-title" aria-hidden="true">
+										<div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title">新增资源</h5>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+												</div>
+												<div class="modal-body">
+													<form>
+														<div class="form-group">
+															<label for="add-resource-name">
+                                                            <small class="text-danger">* </small>资源名称
+                                                        </label>
+															<input type="text" class="form-control" name="add-resource-name" id="add-resource-name" placeholder="">
+														</div>
+														<div class="form-group">
+															<label for="add-resource-type">
+                                                            <small class="text-danger">* </small>资源类型
+                                                        </label>
+															<select class="form-control" name="add-resource-type" id="add-resource-type">
+																<option value=""> --请选择-- </option>
+																<option value="0">目录</option>
+																<option value="1">菜单</option>
+																<option value="2">按钮</option>
+															</select>
+														</div>
+														<div class="form-group">
+															<label for="add-resource-level">
+                                                            <small class="text-danger">* </small>资源层级
+                                                        </label>
+															<select class="form-control" name="add-resource-level" id="add-resource-level">
+																<option value=""> --请选择-- </option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+															</select>
+														</div>
+														<div class="form-group">
+															<label for="add-resource-key">
+                                                            <small class="text-danger">* </small>资源key
+                                                        </label>
+															<input type="text" class="form-control" name="add-resource-key" id="add-resource-key" placeholder="">
+														</div>
+														<div class="form-group">
+															<label for="add-resource-url">
+                                                            <small class="text-danger">* </small>资源url
+                                                        </label>
+															<input type="text" class="form-control" name="add-resource-url" id="add-resource-url" placeholder="">
+														</div>
+														<div class="form-group">
+															<label for="add-resource-status">
+                                                            <small class="text-danger">* </small>状态
+                                                        </label>
+															<select class="form-control" name="add-resource-status" id="add-resource-status">
+																<option value=""> --请选择-- </option>
+																<option value="0">显示</option>
+																<option value="1">隐藏</option>
+															</select>
+														</div>
+														<div class="form-group">
+															<label for="add-resource-parent">
+                                                            上级资源
+                                                        </label>
+															<select class="form-control" name="add-resource-parent" id="add-resource-parent">
+																<option> --请选择-- </option>
+																<option>权限管理</option>
+																<option>系统管理</option>
+															</select>
+														</div>
+														<div class="form-group">
+															<label for="add-resource-desc">
+                                                            <small class="text-danger">* </small>资源描述
+                                                        </label>
+															<textarea class="form-control" name="add-resource-desc" id="add-resource-desc" rows="3"></textarea>
+														</div>
+													</form>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary" data-dismiss="modal">取
+                                                    消</button>
+													<button type="button" class="btn btn-primary" id="sure-add-resource">确
+                                                    定</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- 编辑资源的Modal -->
+									<div class="modal fade" id="edit-resource-dialog" tabindex="-1" role="dialog" aria-labelledby="edit-resource-dialog-title" aria-hidden="true">
+										<div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title">编辑资源</h5>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+												</div>
+												<div class="modal-body">
+													<form>
+														<div class="form-group">
+															<label for="edit-resource-name">
+                                                            <small class="text-danger">* </small>资源名称
+                                                        </label>
+															<input type="text" class="form-control" name="edit-resource-name" id="edit-resource-name" placeholder="">
+														</div>
+														<div class="form-group">
+															<label for="edit-resource-type">
+                                                            <small class="text-danger">* </small>资源类型
+                                                        </label>
+															<select class="form-control" name="edit-resource-type" id="edit-resource-type">
+																<option value=""> --请选择-- </option>
+																<option value="0">目录</option>
+																<option value="1">菜单</option>
+																<option value="2">按钮</option>
+															</select>
+														</div>
+														<div class="form-group">
+															<label for="edit-resource-level">
+                                                            <small class="text-danger">* </small>资源层级
+                                                        </label>
+															<select class="form-control" name="edit-resource-level" id="edit-resource-level">
+																<option value=""> --请选择-- </option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+															</select>
+														</div>
+														<div class="form-group">
+															<label for="edit-resource-key">
+                                                            <small class="text-danger">* </small>资源key
+                                                        </label>
+															<input type="text" class="form-control" name="edit-resource-key" id="edit-resource-key" placeholder="">
+														</div>
+														<div class="form-group">
+															<label for="edit-resource-url">
+                                                            <small class="text-danger">* </small>资源url
+                                                        </label>
+															<input type="text" class="form-control" name="edit-resource-url" id="edit-resource-url" placeholder="">
+														</div>
+														<div class="form-group">
+															<label for="edit-resource-status">
+                                                            <small class="text-danger">* </small>状态
+                                                        </label>
+															<select class="form-control" name="edit-resource-status" id="edit-resource-status">
+																<option value=""> --请选择-- </option>
+																<option value="0">显示</option>
+																<option value="1">隐藏</option>
+															</select>
+														</div>
+														<div class="form-group">
+															<label for="edit-resource-parent">
+                                                            上级资源
+                                                        </label>
+															<select class="form-control" name="edit-resource-parent" id="edit-resource-parent">
+																<option value=""> --请选择-- </option>
+																<option>权限管理</option>
+																<option>系统管理</option>
+															</select>
+														</div>
+														<div class="form-group">
+															<label for="edit-resource-desc">
+                                                            <small class="text-danger">* </small>资源描述
+                                                        </label>
+															<textarea class="form-control" name="edit-resource-desc" id="edit-resource-desc" rows="3"></textarea>
+														</div>
+													</form>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary" data-dismiss="modal">取
+                                                    消</button>
+													<button type="button" class="btn btn-primary" id="sure-edit-resource">确
+                                                    定</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- 删除资源的Modal -->
+									<div class="modal fade" id="delete-resource-dialog" tabindex="-1" role="dialog" aria-labelledby="delete-resource-dialog-title" aria-hidden="true">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title">删除资源</h5>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+												</div>
+												<div class="modal-body">
+													<p>确定要删除资源 <span class="label label-primary" id="delete-resource-name"></span> 吗？删除前请先确保该资源没有被任何角色所关联，否则不可删除！
+													</p>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary" data-dismiss="modal">取
+                                                    消</button>
+													<button type="button" class="btn btn-primary" id="sure-delete-resource">确
+                                                    定</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- 下面预留扩展的位置 -->
+								</div>
+							</div>
+						</div>
+						<!-- 资源表格 -->
+						<div class="row">
+							<div class="col-12 tb-data" id="resource-list-table">
+								<table class="table table-striped table-bordered table-hover" id="resource-table">
+									<thead>
+										<tr>
+											<th>资源名</th>
+											<th>资源类型</th>
+											<th>资源key</th>
+											<th>资源url</th>
+											<th>层级</th>
+											<th>上级资源</th>
+											<th>创建时间</th>
+											<th>状态</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody id="resource-table-body">
+										<tr class="gradeX">
+											<td>加油站管理</td>
+											<td>oil:manage:oilsite</td>
+											<td>菜单</td>
+											<td>/oil/manage/oilsite</td>
+											<td>2</td>
+											<td>-</td>
+											<td>2019-08-06 10:46:22</td>
+											<td class="center"><span class="label label-info">显示</span></td>
+											<td>
+												<button type="button" name="resource-edit" id="resource-edit" class="btn btn-info btn-sm ml-1 mr-1 mt-1 mb-1" data-toggle="modal" data-target="#edit-resource-dialog">编辑</button>
+												<button type="button" name="resource-delete" id="resource-delete" class="btn btn-danger btn-sm ml-1 mr-1 mt-1 mb-1" data-toggle="modal" data-target="#delete-resource-dialog">删除</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- JavaScript files-->
+		<script src="./plugins/jquery-3.4.0/jquery-3.4.0.min.js"></script>
+		<script src="./plugins/popper.js/popper.min.js"></script>
+		<script src="./plugins/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+		<script src="./plugins/jquery.cookie/jquery.cookie.js"></script>
+		<script src="./plugins/jquery-validation/jquery.validate.min.js"></script>
+		<script src="./plugins/toastr-2.1.4/toastr.min.js"></script>
+		<script src="./plugins/data-tables/data-tables-1.10.18/js/jquery.dataTables.min.js"></script>
+		<script src="./plugins/data-tables/data-tables-1.10.18/js/dataTables.bootstrap4.min.js"></script>
+
+		<!-- public -->
+		<script src="js/public.js"></script>
+		<!-- self -->
+		<script src="js/ms_resource_mg.js"></script>
+
+	</body>
+
+</html>

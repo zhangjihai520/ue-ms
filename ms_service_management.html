@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>供应商管理</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="robots" content="all,follow">
+
+		<link rel="stylesheet" href="./plugins/bootstrap-4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="./plugins/toastr-2.1.4/toastr.min.css">
+		<link rel="stylesheet" href="./plugins/data-tables/data-tables-1.10.18/css/dataTables.bootstrap4.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="shortcut icon" href="imgs/favicon.ico">
+		<!-- Tweaks for older IEs-->
+		<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+		<style>
+			#qr-code-border {
+                margin: 0 auto;
+				border: 1px solid black;
+                padding: 20px;
+                width: 296px;
+			}
+			.details .form-row {
+				line-height: 35px;
+			}
+			.details .col-8 {
+				text-align: right;
+			}
+			.marginBottom20 {
+				margin-bottom: 20px;
+			}
+		</style>
+	</head>
+
+	<body class="gray-bg">
+		<div class="wrapper wrapper-content">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>供应商管理</h5>
+				</div>
+				<div class="ibox-content">
+					<div class="container-fluid">
+						<!-- 筛选栏 -->
+						<div class="row">
+							<div class="col-12">
+								<form class="tb-filter" id="sysparam-list-filter">
+
+									<div class="form-row align-items-end">
+										<!-- 键 -->
+										<!--<div class="form-group col-auto">-->
+											<!--<label for="supplie_id">供应商ID：</label>-->
+											<!--<input type="text" name="supplie_id" id="supplie_id" class="form-control" placeholder="">-->
+										<!--</div>-->
+										<!-- 值 -->
+										<div class="form-group col-auto">
+											<label for="supplie_name">供应商名称：</label>
+											<input type="text" name="supplie_name" id="supplie_name" class="form-control" placeholder="">
+										</div>
+										<div class="form-group col-auto">
+											<label for="supplie_legalerName">法人：</label>
+											<input type="text" name="sys-value" id="supplie_legalerName" class="form-control" placeholder="名称">
+										</div>
+										<!-- 值 -->
+										<div class="form-group col-auto">
+											<label for="supplie_phone">手机号：</label>
+											<input type="text" name="sys-value" id="supplie_phone" class="form-control" placeholder="手机号">
+										</div>
+										<!-- 查询按钮 -->
+										<div class="form-group col-auto">
+											<button type="button" name="reset-user" id="reset_service" class="btn btn-primary  link-resource">重置</button>
+										</div>
+										<div class="form-group col-auto">
+											<button type="button" name="query-user" id="query-user" class="btn btn-primary ">查 询</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						<!-- 表格工具栏 -->
+						<div class="row">
+							<div class="col-12 tb-toolbar" id="role-list-table-toolbar">
+								<div class="btn-group float-right">
+									<!-- <button class="btn btn-primary" type="button">新 增</button> -->
+									<button disabled="disabled" style="margin-right: 20px" type="button" name="query-user" class="btn btn-primary addSupplier">
+										添加供应商
+									</button>
+									<!-- 提货二维码的按钮 -->
+									<button disabled="disabled" type="button" id="pick-up-qr-code" class="btn btn-primary pick-up-qr-code" data-toggle="modal"
+											data-target="#pick-up-qr-code-dialog">
+										提货二维码
+									</button>
+									<!-- 提货二维码的Modal -->
+									<div class="modal fade" id="pick-up-qr-code-dialog" tabindex="-1" role="dialog"
+										 aria-labelledby="pick-up-qr-code-dialog-title" aria-hidden="true">
+										<div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title">提货二维码</h5>
+													<button type="button" class="close" data-dismiss="modal"
+															aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<div class="modal-body">
+													<form>
+														<div class="form-group">
+															<div id="qr-code-border">
+																<div id="output"></div>
+															</div>
+														</div>
+														<a style="display: none" id="downPhoto" href="" download="downloadQrCode.jpg">生成图片</a>
+													</form>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary" data-dismiss="modal">取
+														消</button>
+													<button type="button" class="btn btn-primary" id="sure-download-qr-code">下
+														载</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- 公司审核的Modal -->
+									<div class="modal fade" id="company-audit-dialog" tabindex="-1" role="dialog"
+										 aria-labelledby="edit-user-dialog-title" aria-hidden="true">
+										<div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title">公司审核</h5>
+													<button type="button" class="close" data-dismiss="modal"
+															aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<div class="modal-body details">
+													<div class="form-row">
+														<div class="col-4">公司名称：</div>
+														<div class="col-8" id="auditName"></div>
+													</div>
+													<div class="form-row">
+														<div class="col-4">社会信用号：</div>
+														<div class="col-8" id="auditUSCC"></div>
+													</div>
+													<div class="form-row">
+														<div class="col-4">商税号：</div>
+														<div class="col-8" id="auditNumber"></div>
+													</div>
+													<div class="form-row">
+														<div class="col-4">供应商类型：</div>
+														<div class="col-8" id="auditType"></div>
+													</div>
+													<div class="form-row">
+														<div class="col-4">详细地址：</div>
+														<div class="col-8" id="auditDetailedAddress"></div>
+													</div>
+													<div class="form-row">
+														<div class="col-4">联系人：</div>
+														<div class="col-8" id="auditContact"></div>
+													</div>
+													<div class="form-row">
+														<div class="col-4">联系电话：</div>
+														<div class="col-8" id="auditTel"></div>
+													</div>
+													<div class="form-row">
+														<div class="col-4">开户许可证编号：</div>
+														<div class="col-8" id="auditBankPermission"></div>
+													</div>
+													<div class="form-row">
+														<div class="col-4">开户银行名称：</div>
+														<div class="col-8" id="auditBankNode"></div>
+													</div>
+													<div class="form-row">
+														<div class="col-4">银行账户名称：</div>
+														<div class="col-8" id="auditBankUsername"></div>
+													</div>
+													<div class="form-row">
+														<div class="col-4">银行账号：</div>
+														<div class="col-8" id="auditBankAccount"></div>
+													</div>
+													<div class="form-row">
+														<div class="col-4">法人姓名：</div>
+														<div class="col-8" id="auditLegalerName"></div>
+													</div>
+													<div class="form-row">
+														<div class="col-4">法人身份证号码：</div>
+														<div class="col-8" id="auditCardID"></div>
+													</div>
+													<div class="form-row">
+														<div class="col-4">法人身份证正面：</div>
+														<div class="col-8 marginBottom20" id="auditFrontUrl"><img width="20%" src="imgs/haven't_uploaded.png"></div>
+													</div>
+													<div class="form-row">
+														<div class="col-4">法人身份证背面：</div>
+														<div class="col-8 marginBottom20" id="auditBackUrl"><img width="20%" src="imgs/haven't_uploaded.png"></div>
+													</div>
+													<div class="form-row">
+														<div class="col-4">营业执照：</div>
+														<div class="col-8 marginBottom20" id="auditBusinessLicenceUrl"><img width="20%" src="imgs/haven't_uploaded.png"></div>
+													</div>
+													<div class="form-row">
+														<div class="col-4">logo：</div>
+														<div class="col-8 marginBottom20" id="logoUrl"><img width="20%" src="imgs/haven't_uploaded.png"></div>
+													</div>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-danger" id="audit-no-pass">审核不通过
+													</button>
+													<button type="button" class="btn btn-primary" id="audit-the-pass">审核通过
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- 下面预留扩展的位置 -->
+								</div>
+							</div>
+						</div>
+						<!-- 系统参数表格 -->
+						<div class="row">
+							<div class="col-12 tb-data" id="sysparam-list-table">
+								<table class="table table-bordered table-hover" id="user-table">
+									<thead>
+										<tr>
+															
+											<!--<th>商户ID</th>-->
+											<th>商户名称/姓名</th>	
+											<th>类型</th>
+											<th>法人</th>
+											<th>法人身份证</th>
+											<th>手机号</th>
+											<th>状态</th>
+											<th>审核状态</th>
+											<th>操作</th>
+							
+										</tr>
+									</thead>
+									<tbody id="service-table-body">
+										<!--<tr class="gradeX">																				-->
+											<!--<td>18030003</td>-->
+											<!--<td>中间商A有限公司</td>											-->
+											<!--<td>金鑫</td>-->
+											<!--<td>18688886666</td>											-->
+											<!--<td>-->
+												<!--<a href="####" class="btn btn_style btn-sm">查看</a>-->
+												<!--<a href="####" class="btn btn_style btn-sm">编辑</a>-->
+												<!--<a href="####" class="btn btn_style btn-sm">删除</a>-->
+											<!--</td>											-->
+										<!--</tr>-->
+										<!--<tr class="gradeX">-->
+		<!---->
+										<!---->
+											<!--<td>18030002</td>-->
+											<!--<td>中间商A有限公司</td>										-->
+											<!--<td>金鑫</td>-->
+											<!--<td>18688886666</td>											-->
+											<!--<td>-->
+												<!--<a href="####" class="btn btn_style btn-sm">查看</a>-->
+												<!--<a href="####" class="btn btn_style btn-sm">编辑</a>-->
+												<!--<a href="####" class="btn btn_style btn-sm">删除</a>-->
+											<!--</td>-->
+										<!--</tr>-->
+									</tbody>
+								</table>
+							</div>
+							<div style="display: flex;justify-content: space-between;" class="col-12">
+								<div class="new_input">
+									<input type="checkbox" name="" id="" value="" /> 全选
+								</div>
+								<div class="new_btn_box">
+									<button class="btn btn-info">导出</button>
+					
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- JavaScript files-->
+		<script src="./plugins/jquery-3.4.0/jquery-3.4.0.min.js"></script>
+		<script src="./plugins/popper.js/popper.min.js"></script>
+		<script src="./plugins/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+		<script src="./plugins/jquery.cookie/jquery.cookie.js"></script>
+		<script src="./plugins/jquery-validation/jquery.validate.min.js"></script>
+		<script src="./plugins/toastr-2.1.4/toastr.min.js"></script>
+		<script src="./plugins/data-tables/data-tables-1.10.18/js/jquery.dataTables.min.js"></script>
+		<script src="./plugins/data-tables/data-tables-1.10.18/js/dataTables.bootstrap4.min.js"></script>
+        <script src="./plugins/qrcode/jquery.qrcode.min.js"></script>
+
+		<!-- public -->
+		<script src="js/public.js"></script>
+		<!-- self -->
+		<script src="js/ms_service_management.js"></script>
+		<script>	
+			
+		</script>
+	</body>
+
+</html>

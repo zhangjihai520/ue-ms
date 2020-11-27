@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>我的工作台</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+
+    <link rel="stylesheet" href="./plugins/bootstrap-4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./plugins/toastr-2.1.4/toastr.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="shortcut icon" href="imgs/favicon.ico">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>我的工作台</h5>
+            </div>
+            <div class="ibox-content">
+                <!-- 在下面添加业务内容 -->
+                <!-- 今日统计信息 -->
+                <div class="container-fluid" id="today-statistics">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>今日统计信息</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="list-group list-group-flush">
+                                <!-- 今日用户量相关统计 -->
+                                <li class="list-group-item" id="my-desk-today-st-users">
+                                    <ul class="list-group list-group-flush d-inline-block">
+                                        <li class="list-group-item d-inline-block">
+                                            <div class="ibox displayNone">
+                                                <div class="ibox-title">
+                                                    <h5>新增终端用户量</h5>
+                                                </div>
+                                                <div class="ibox-content">
+                                                    <div class="text-wrap" style="width:10rem;font-size:20px;">
+                                                        <p class="text-center align-middle" name="add-user-num"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item d-inline-block">
+                                            <div class="ibox displayNone">
+                                                <div class="ibox-title">
+                                                    <h5>新增采购商量</h5>
+                                                </div>
+                                                <div class="ibox-content">
+                                                    <div class="text-wrap" style="width:10rem;font-size:20px;">
+                                                        <p class="text-center align-middle" name="add-buyer-num"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item d-inline-block">
+                                            <div class="ibox displayNone">
+                                                <div class="ibox-title">
+                                                    <h5>新增供应商量</h5>
+                                                </div>
+                                                <div class="ibox-content">
+                                                    <div class="text-wrap" style="width:10rem;font-size:20px;">
+                                                        <p class="text-center align-middle" name="add-supplier-num"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item d-inline-block">
+                                            <div class="ibox displayNone">
+                                                <div class="ibox-title">
+                                                    <h5>新增物流商量</h5>
+                                                </div>
+                                                <div class="ibox-content">
+                                                    <div class="text-wrap" style="width:10rem;font-size:20px;">
+                                                        <p class="text-center align-middle" name="add-carrier-num"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- 今日C端相关统计 -->
+                                <li class="list-group-item" id="my-desk-today-st-cside">
+                                    <ul class="list-group list-group-flush d-inline-block">
+                                        <li class="list-group-item d-inline-block">
+                                            <div class="ibox displayNone">
+                                                <div class="ibox-title">
+                                                    <h5>加油单量</h5>
+                                                </div>
+                                                <div class="ibox-content">
+                                                    <div class="text-wrap" style="width:10rem;font-size:20px;">
+                                                        <p class="text-center align-middle" name="corder-num"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item d-inline-block">
+                                            <div class="ibox displayNone">
+                                                <div class="ibox-title">
+                                                    <h5>加油单金额</h5>
+                                                </div>
+                                                <div class="ibox-content">
+                                                    <div class="text-wrap" style="width:10rem;font-size:20px;">
+                                                        <p class="text-center align-middle" name="corder-amount"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item d-inline-block">
+                                            <div class="ibox displayNone">
+                                                <div class="ibox-title">
+                                                    <h5>钱包充值量</h5>
+                                                </div>
+                                                <div class="ibox-content">
+                                                    <div class="text-wrap" style="width:10rem;font-size:20px;">
+                                                        <p class="text-center align-middle" name="topup-num"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item d-inline-block">
+                                            <div class="ibox displayNone">
+                                                <div class="ibox-title">
+                                                    <h5>钱包充值金额</h5>
+                                                </div>
+                                                <div class="ibox-content">
+                                                    <div class="text-wrap" style="width:10rem;font-size:20px;">
+                                                        <p class="text-center align-middle" name="topup-amount"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- 今日B端相关统计 -->
+                                <li class="list-group-item" id="my-desk-today-st-bside">
+                                    <ul class="list-group list-group-flush d-inline-block">
+                                        <li class="list-group-item d-inline-block R_SUPPLIER">
+                                            <div class="ibox displayNone R_SUPPLIER">
+                                                <div class="ibox-title">
+                                                    <h5>购油单量</h5>
+                                                </div>
+                                                <div class="ibox-content">
+                                                    <div class="text-wrap" style="width:10rem;font-size:20px;">
+                                                        <p class="text-center align-middle" name="border-num"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item d-inline-block">
+                                            <div class="ibox displayNone R_SUPPLIER">
+                                                <div class="ibox-title">
+                                                    <h5>购油单金额</h5>
+                                                </div>
+                                                <div class="ibox-content">
+                                                    <div class="text-wrap" style="width:10rem;font-size:20px;">
+                                                        <p class="text-center align-middle" name="border-amount"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item d-inline-block">
+                                            <div class="ibox displayNone R_CARRIER">
+                                                <div class="ibox-title">
+                                                    <h5>物流发货车次</h5>
+                                                </div>
+                                                <div class="ibox-content">
+                                                    <div class="text-wrap" style="width:10rem;font-size:20px;">
+                                                        <p class="text-center align-middle" name="trans-begin-num"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item d-inline-block">
+                                            <div class="ibox displayNone R_CARRIER">
+                                                <div class="ibox-title">
+                                                    <h5>物流交货车次</h5>
+                                                </div>
+                                                <div class="ibox-content">
+                                                    <div class="text-wrap" style="width:10rem;font-size:20px;">
+                                                        <p class="text-center align-middle" name="trans-end-num"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript files-->
+    <script src="./plugins/jquery-3.4.0/jquery-3.4.0.min.js"></script>
+    <script src="./plugins/popper.js/popper.min.js"></script>
+    <script src="./plugins/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+    <script src="./plugins/jquery.cookie/jquery.cookie.js"></script>
+    <script src="./plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="./plugins/toastr-2.1.4/toastr.min.js"></script>
+
+    <!-- public -->
+    <script src="js/public.js"></script>
+    <!-- self -->
+    <script src="js/my_desk.js"></script>
+
+</body>
+
+</html>

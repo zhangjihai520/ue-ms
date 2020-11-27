@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>活动详情</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="robots" content="all,follow">
+
+		<link rel="stylesheet" href="./plugins/bootstrap-4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="./plugins/toastr-2.1.4/toastr.min.css">
+		<link rel="stylesheet" href="./plugins/data-tables/data-tables-1.10.18/css/dataTables.bootstrap4.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="shortcut icon" href="imgs/favicon.ico">
+		<!-- Tweaks for older IEs-->
+		<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+	</head>
+
+	<body class="gray-bg">
+
+		<div class="wrapper wrapper-content">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>活动信息</h5>
+				</div>
+				<div class="ibox-content">
+					<div class="container-fluid">
+						<!-- 筛选栏 -->
+						<div class="row">
+							<div class="col-12">
+								<div class="form-inline">
+									<div class="form-group col-auto">
+										<label for="" class="control-label">活动编号：</label>
+										<input type="text" name="" id="add_oil" class="form-control" disabled="disabled" value="125465464">
+									</div>
+									<div class="form-group col-auto offset-1">
+										<label for="" class="control-label">活动名称：</label>
+										<input type="text" name="" id="add_oil" class="form-control" placeholder="单行输入">
+									</div>
+									<div class="form-group col-auto offset-1">
+										<label for="" class="control-label">活动状态：</label>
+										<select class="form-control" id="order_status">
+											<option value="">已上线</option>
+											<option value="">已下线</option>
+										</select>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<div class="form-inline">
+									<div class="form-group col-auto ">
+										<label for="" class="control-label">活动地址URL：</label>
+										<input type="text" name="" id="add_oil" class="form-control" placeholder="单行输入">
+									</div>
+									<div class="form-group col-auto offset-1">
+										<label for="" class="control-label">活动时间：</label>
+										<input type="text" name="" id="add_oil" class="form-control" placeholder="开始时间">
+										<span>&nbsp;至&nbsp;</span>
+										<input type="text" name="" id="add_oil" class="form-control" placeholder="结束时间">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<div class="form-inline">
+									<div class="form-group col-auto">
+										<label for="" class="control-label">活动消耗：</label>
+										<input type="text" name="" id="add_oil" class="form-control" placeholder="单行输入">
+										<span>积分/次</span>
+									</div>
+									<div class="form-group col-auto offset-1">
+										<label for="" class="control-label">是否次数：</label>
+										<input type="text" name="" id="active_number" class="form-control" placeholder="单行输入">
+										<span>次</span>
+										<label class="label_class checkbox-inline">
+											  <input type="radio" name="commercial" id="true"  value="true" checked=""> 
+											  <span>是</span>
+										</label>
+										<label class="label_class checkbox-inline">
+											  <input type="radio" name="commercial" id="false"  value="false"> 
+											  <span>否</span>
+										</label>
+									</div>
+									<div class="form-group col-auto">
+										<button type="button" name="query-user" id="order_search" class="btn btn-primary ">修改</button>
+									</div>
+									<!--<div class="form-group col-auto">
+										<button type="button" name="query-user" id="query-user" class="btn btn-primary ">添加奖品</button>
+									</div>-->
+
+								</div>
+							</div>
+						</div>
+						<div class="modal fade" id="add-role-dialog" tabindex="-1" role="dialog" aria-labelledby="add-role-dialog-title" aria-hidden="true">
+							<div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title">奖品编辑</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+									</div>
+									<div class="modal-body">
+										<div class="form-group  form-inline">
+											<label for="mobile" class="col-sm-2 control-label">奖品名称：</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="mobile" placeholder="单行输入">
+											</div>
+										</div>
+										<div class="form-group col-auto form-inline">
+											<label for="" class="control-label">每日中奖数：</label>
+											
+											<label class="label_class checkbox-inline">
+											  <input type="radio" name="commercial" id="true"  value="true" checked=""> 
+											  <span>不限</span>
+											</label>
+											<label class="label_class checkbox-inline">
+											  <input type="radio" name="commercial" id="false"  value="false"> 
+											  <span>限制</span>										
+											</label>
+											<label class="control-label">
+												<input type="text" name="" id="active_number" class="form-control" placeholder="单行输入">
+												<span>次</span>
+											</label>
+										</div>
+										<div class="form-group form-inline">
+											<label for="name" class="col-sm-2 control-label">奖品数量：</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="name" placeholder="单行输入">
+											</div>
+										</div>
+
+										<div class="form-group form-inline">
+											<label for="email" class="col-sm-2 control-label">中奖概率</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="email" placeholder="单行输入">
+												<span>%</span>
+											</div>
+											<div class="col-sm-4 tips"></div>
+										</div>
+
+										<div class="form-group form-inline">
+											<label for="regtime2" class="col-sm-2 control-label">奖品图片</label>
+											<div class="col-sm-8 input-group" id="regtime2">
+												<button class="btn new_btn link-resource" style="margin-left:40px">
+													<i class="fa fa-upload"></i>
+													选择上传文件
+												</button>
+											<span class="new_text mt-2">支出png、jpg格式，小于50KB</span>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">取
+                                                    消</button>
+										<button type="button" class="btn btn-primary" id="sure-add-role">确
+                                                    定</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 表格工具栏 -->
+						<div class="row mt-4">
+							<div class="ibox-title col-12" style="display: flex;">
+								<div style="line-height:14px;">
+									<i class="fa fa-list fa-fw"></i>
+									<span>奖项信息</span>
+								</div>
+							</div>
+						</div>
+						<!-- 系统参数表格 -->
+						<div class="row">
+							<div class="col-12 tb-data" id="sysparam-list-table">
+								<table class="table table-bordered table-hover" id="order-table">
+									<thead>
+										<tr>
+											<th>序号</th>
+											<th>奖品名称</th>
+											<th>奖品图片</th>
+											<th>每日中奖数量</th>
+											<th>奖品数量</th>
+											<th>已中奖数量</th>
+											<th>中奖概率</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody id="order-table-body">
+										<tr class="gradeX">
+											<td>1</td>
+											<td>天堂热水瓶</td>
+											<td>
+												<img src="imgs/bg.jpg" class="img-thumbnail" style="width:100px;height:50px;" />
+											</td>
+											<td>2000</td>
+											<td>500</td>
+											<td>100</td>
+											<td>50%</td>
+											<td>
+												<button type="button" id="" class="btn btn-primary" data-toggle="modal" data-target="#add-role-dialog">
+                                    				编辑	
+                             					</button>
+												<a href="####" class="btn offset-1 btn_style btn-sm">删除</a>
+											</td>
+										</tr>
+										<tr class="gradeX">
+											<td>1</td>
+											<td>天堂热水瓶</td>
+											<td>
+												<img src="imgs/bg.jpg" class="img-thumbnail" style="width:100px;height:50px;" />
+											</td>
+											<td>2000</td>
+											<td>500</td>
+											<td>100</td>
+											<td>50%</td>
+											<td>
+												<button type="button" id="add-role" class="btn btn-primary add-role" data-toggle="modal" data-target="#add-role-dialog">
+                                    				编辑	
+                             					</button>
+												<a href="####" class="btn offset-1 btn_style btn-sm">删除</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div style="display: flex;justify-content: space-between;" class="col-12">
+								<div class="new_input">
+									<input type="checkbox" name="" id="" value="" /> 全选
+								</div>
+								<div class="new_btn_box">
+									<button class="btn btn-info">导出</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- JavaScript files-->
+		<script src="./plugins/jquery-3.4.0/jquery-3.4.0.min.js"></script>
+		<script src="./plugins/popper.js/popper.min.js"></script>
+		<script src="./plugins/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+		<script src="./plugins/jquery.cookie/jquery.cookie.js"></script>
+		<script src="./plugins/jquery-validation/jquery.validate.min.js"></script>
+		<script src="./plugins/toastr-2.1.4/toastr.min.js"></script>
+		<script src="./plugins/data-tables/data-tables-1.10.18/js/jquery.dataTables.min.js"></script>
+		<script src="./plugins/data-tables/data-tables-1.10.18/js/dataTables.bootstrap4.min.js"></script>
+
+		<!-- public -->
+		<script src="js/public.js"></script>
+		<!-- self -->
+		<!--<script src="js/ms_order_manager.js"></script>-->
+		<script>
+			$('input[type=radio]').change(function() {
+				if(this.value == 'true') {
+					$("#active_number").attr("disabled", "disabled")
+				} else if(this.value == 'false') {
+					$("#active_number").removeAttr("disabled")
+				}
+			});
+		</script>
+
+	</body>
+
+</html>

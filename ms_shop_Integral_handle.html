@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>商品详情 </title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="robots" content="all,follow">
+
+		<link rel="stylesheet" href="./plugins/bootstrap-4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="./plugins/toastr-2.1.4/toastr.min.css">
+		<link rel="stylesheet" href="./plugins/data-tables/data-tables-1.10.18/css/dataTables.bootstrap4.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="shortcut icon" href="imgs/favicon.ico">
+		<!-- Tweaks for older IEs-->
+		<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+	</head>
+
+	<body class="gray-bg">
+		<div class="wrapper wrapper-content">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>商品详情</h5>
+				</div>
+				<div class="ibox-content">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-12">
+								<form class="test offset-3">
+									<div class="form-group form-inline">
+										<label class="col-sm-3 control-label">商品类型：</label>
+										<div class="col-sm-6">
+											<select class="form-control" name="comType" id="shopAd_type">
+												<!--<option value="">--请选择--</option>-->
+												<option value="0" class="opt_type">实物</option>
+												<option value="1" class="opt_type">券</option>
+												<option value="2" class="opt_type">积分</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group form-inline add_ti_type_id" style="display:none;">
+										<label class="col-sm-3 control-label">优惠券：</label>
+										<div class="col-sm-6">
+											<select class="form-control" name="tiTypeId" id="add_ti_type_id">
+												<option value="">--请选择--</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group form-inline shopAd_name" style="display: none">
+										<label for="shopAd_name" class="col-sm-3 control-label">商品名称：</label>
+										<div class="col-sm-6">
+											<input type="text" name="name" class="form-control" id="shopAd_name" placeholder="单行输入">
+										</div>
+									</div>
+									<div class="form-group form-inline shopAd_score" style="display: none">
+										<label class="col-sm-3 control-label">积分额：</label>
+										<div class="col-sm-6">
+											<input type="text" name="score" class="form-control" id="shopAd_score" placeholder="单行输入">
+										</div>
+									</div>
+
+									<div class="form-group form-inline">
+										<label class="col-sm-3 control-label">兑换积分：</label>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" name="scoreNum" id="shopAd_scoreNum" placeholder="单行输入">
+										</div>
+
+									</div>
+									<div class="form-group form-inline">
+										<label class="col-sm-3 control-label">商品状态：</label>
+										<div class="col-sm-6">
+											<select class="form-control" name="status" id="shopAd_status">
+												<option value="0">待上架</option>
+												<option value="1">已上架</option>
+												<option value="-1">已下架</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group form-inline">
+										<label class="col-sm-3 control-label">是否会员专属：</label>
+										<div class="col-sm-6">
+											<select class="form-control" name="isExclusive" id="shopAd_isExclusive">
+												<option value="0">否</option>
+												<option value="1">是</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group form-inline">
+										<label class="col-sm-3 control-label">商品图片：</label>
+										<div class="fileImgDiv">
+											<div class='imageDiv su_front_box' style="display: none;">
+												<img style='object-fit:cover;' id="su_img_front" width="200" height="200" />
+												<div class='cover'><i class='test_delbtn'>删除</i></div>
+											</div>
+											<div class="addImages su_add_box">
+												<input type="file" name="fileName" class="fileUpload" id="fileInput" accept="image/png, image/jpeg, image/gif, image/jpg">
+												<div class="clickUpload">
+													<span>+</span>
+													<p>点击上传</p>
+												</div>
+											</div>
+										</div>
+
+										<!--<div class="msg" style="display: none;"></div>-->
+										<input type="text" name="smCommodityId" hidden="" />
+									</div>
+									<div class="form-group form-inline">
+										<label class="col-sm-3 control-label">大转盘图片：</label>
+
+										<!--	<input name="suSupplierId" type="hidden" id="su_front_input" />-->
+										<div class="fileImgDiv">
+											<div class='imageDiv su_back_box' style="display: none;">
+												<img style='object-fit:cover;' id="su_img_back" width="200" height="200" />
+												<div class='cover'><i class='back_delbtn'>删除</i></div>
+											</div>
+											<div class="addImages back_add_box">
+												<input type="file" name="dialFileName" class="fileUpload" id="back_fileInput" accept="image/png, image/jpeg, image/gif, image/jpg">
+												<div class="clickUpload">
+													<span>+</span>
+													<p>点击上传</p>
+												</div>
+											</div>
+										</div>
+
+										<!--<div class="msg" style="display: none;"></div>-->
+
+									</div>
+								</form>
+
+								<div class="row new_top_table">
+									<div class="new_footer">
+										<button type="button" class="btn btn-secondary" id="shop_off">取
+                                                    消</button>
+										<button type="button" class="btn btn-warning" id="shop_change">修改</button>
+									</div>
+
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- JavaScript files-->
+		<script src="./plugins/jquery-3.4.0/jquery-3.4.0.min.js"></script>
+		<script src="./plugins/popper.js/popper.min.js"></script>
+		<script src="./plugins/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+		<script src="./plugins/jquery.cookie/jquery.cookie.js"></script>
+		<script src="./plugins/jquery-validation/jquery.validate.min.js"></script>
+		<script src="./plugins/toastr-2.1.4/toastr.min.js"></script>
+		<script src="./plugins/data-tables/data-tables-1.10.18/js/jquery.dataTables.min.js"></script>
+		<script src="./plugins/data-tables/data-tables-1.10.18/js/dataTables.bootstrap4.min.js"></script>
+
+		<!-- public -->
+		<script src="js/public.js"></script>
+		<!-- self -->
+		<script src="js/ms_shop_Integral_handle.js"></script>
+		<script>
+		</script>
+
+	</body>
+
+</html>

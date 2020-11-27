@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>添加优惠券</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="robots" content="all,follow">
+
+		<link rel="stylesheet" href="./plugins/bootstrap-4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="./plugins/toastr-2.1.4/toastr.min.css">
+		<link rel="stylesheet" href="./plugins/data-tables/data-tables-1.10.18/css/dataTables.bootstrap4.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="shortcut icon" href="imgs/favicon.ico">
+		<!-- Tweaks for older IEs-->
+		<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+	</head>
+
+	<body class="gray-bg">
+		<div class="wrapper wrapper-content">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>添加优惠券</h5>
+				</div>
+				<div class="ibox-content">
+					<div class="container-fluid">
+						<!-- 筛选栏 -->
+						<div class="row">
+							<div class="col-8">
+								<div class="row mt-4">
+									<div class="col-3 offset-5 discount_add">优惠券名称：</div>
+									<div class="col-4">
+										<input type="text" class="form-control" placeholder="单行输入" id="discount_typeName" />
+									</div>
+								</div>
+								<div class="row mt-4">
+									<div class="col-3 offset-5 discount_add">优惠券类型：</div>
+									<div class="col-4">
+										<select class="form-control" id="discount_type">
+											<!--<option>满减</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>-->
+										</select>
+									</div>
+								</div>
+								<div class="row mt-4">
+									<div class="col-3 offset-5 discount_add">优惠券面额：</div>
+									<div class="col-4">
+										<input type="text" class="form-control" placeholder="单行输入"id="discount_amount"/>
+									</div>
+								</div>
+								<div class="row mt-4">
+									<div class="col-3 offset-5 discount_add">有效期天数：</div>
+									<div class="col-4">
+										<input type="text" class="form-control" placeholder="单行输入"id="discount_expires" />
+									</div>
+								</div>
+								<div class="row mt-4">
+									<div class="col-3 offset-5 discount_add">发放条件金额：</div>
+									<div class="col-4">
+										<input type="text" class="form-control" placeholder="为0时表示没有金额限制" id="discount_putCondAmount"/>
+									</div>
+								</div>								
+								<div class="row mt-4">
+									<div class="col-3 offset-5 discount_add">优惠券使用类型：</div>
+									<div class="col-4">
+										<select class="form-control" id="discount_used_type">
+											<!--<option>满减</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>-->
+										</select>
+									</div>
+								</div>
+								<div class="row mt-4">
+									<div class="col-3 offset-5 discount_add">使用条件：</div>
+									<div class="col-4">
+										<input type="text" class="form-control" placeholder="满减为数字,折减为小数,立减为0" id="discount_useCondAmount" />
+									</div>
+								</div>	
+								<div class="row mt-4">
+									<div class="col-3 offset-5 discount_add">券类型描述：</div>
+									<div class="col-4">
+										<div class="form-group">
+											<textarea class="form-control" rows="3" id="discount_typeDesc"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group offset-6">
+						<button type="button"  id="discount_add_btn" class="btn btn-primary  link-resource">确认提交</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- JavaScript files-->
+		<script src="./plugins/jquery-3.4.0/jquery-3.4.0.min.js"></script>
+		<script src="./plugins/popper.js/popper.min.js"></script>
+		<script src="./plugins/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+		<script src="./plugins/jquery.cookie/jquery.cookie.js"></script>
+		<script src="./plugins/jquery-validation/jquery.validate.min.js"></script>
+		<script src="./plugins/toastr-2.1.4/toastr.min.js"></script>
+		<script src="./plugins/data-tables/data-tables-1.10.18/js/jquery.dataTables.min.js"></script>
+		<script src="./plugins/data-tables/data-tables-1.10.18/js/dataTables.bootstrap4.min.js"></script>
+
+		<!-- public -->
+		<script src="js/public.js"></script>
+		<!-- self -->
+		<script src="js/ms_discount_coupon_add.js"></script>
+		<script>
+		</script>
+
+	</body>
+
+</html>

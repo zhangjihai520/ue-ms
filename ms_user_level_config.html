@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>用户等级配置</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="robots" content="all,follow">
+
+		<link rel="stylesheet" href="./plugins/bootstrap-4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="./plugins/toastr-2.1.4/toastr.min.css">
+		<link rel="stylesheet" href="./plugins/data-tables/data-tables-1.10.18/css/dataTables.bootstrap4.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="shortcut icon" href="imgs/favicon.ico">
+		<!-- Tweaks for older IEs-->
+		<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+	</head>
+
+	<body class="gray-bg">
+		<div class="wrapper wrapper-content">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>用户等级配置</h5>
+				</div>
+				<!-- 新增按钮 -->
+				<button type="button" name="query-user" id="insertLevel" class="btn btn-primary float-right"
+						style="margin-right: 5%" data-toggle="modal"
+						data-target="#insert-level-dialog">新增</button>
+				<!-- 新增角色的Modal -->
+				<div class="modal fade" id="insert-level-dialog" tabindex="-1" role="dialog"
+					 aria-labelledby="add-role-dialog-title" aria-hidden="true">
+					<div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">新增等级</h5>
+								<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<form>
+									<!--<div class="form-group">-->
+										<!--<label for="add-level-num">-->
+											<!--<small class="text-danger">* </small>会员等级：-->
+										<!--</label>-->
+										<!--<input type="text" class="form-control" name="add-level-num"-->
+											   <!--id="add-level-num" aria-describedby="add-level-num-tip"-->
+											   <!--placeholder="" oninput = "value=value.replace(/[^\d]/g,'')">-->
+										<!--<small id="add-level-num-tip"-->
+											   <!--class="form-text text-danger">注：整数形式表示</small>-->
+									<!--</div>-->
+									<div class="form-group">
+										<label for="add-level-score">
+											<small class="text-danger">* </small>升级所需积分：
+										</label>
+										<input type="text" class="form-control" name="add-level-score"
+											   id="add-level-score" aria-describedby="add-level-score-tip"
+											   placeholder="" oninput = "value=value.replace(/[^\d]/g,'')">
+										<small id="add-level-score-tip"
+											   class="form-text text-danger">注：整数形式表示</small>
+									</div>
+									<div class="form-group">
+										<label for="add-level-reward">
+											<small class="text-danger">* </small>积分奖励比例：
+										</label>
+										<input type="text" class="form-control" name="add-level-reward"
+											   id="add-level-reward" aria-describedby="add-level-reward-tip"
+											   placeholder="" oninput = "value=value.replace(/[^\d^\.]+/g,'')">
+										<small id="add-level-reward-tip"
+											   class="form-text text-danger">注：以小数形式存储的百分数</small>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">取
+									消</button>
+								<button type="button" class="btn btn-primary" id="sure-add-level">确
+									定</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="ibox-content">
+					<div class="container-fluid" id="level_box">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<form class="form-horizontal">
+									<div class="modal-header">
+										<h3>L2会员：</h3>
+									</div>
+									<div class="modal-body form-inline">
+										<div class="form-group">
+											<label for="name" class="col-sm-5 control-label">升级所需积分：</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control"  placeholder="单行输入">
+											</div>										
+										</div>
+										<div class="form-group">
+											<label for="mobile" class="col-sm-5 control-label">等级涨幅比例：</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control"  placeholder="单行输入">
+											</div>
+										</div> 										
+									</div>
+									<div class="modal-footer">
+										<button class="btn btn-primary">确认</button>
+									</div>
+
+								</form>
+							</div>
+						</div>
+						
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<form class="form-horizontal">
+									<div class="modal-header">
+										<h3>L3会员：</h3>
+									</div>
+									<div class="modal-body form-inline">
+										<div class="form-group">
+											<label for="name" class="col-sm-4 control-label">需求积分</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control"  placeholder="单行输入">
+											</div>										
+										</div>
+										<div class="form-group">
+											<label for="mobile" class="col-sm-4 control-label">积分消费比例</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control"  placeholder="单行输入">
+											</div>
+										</div> 										
+									</div>
+									<div class="modal-footer">
+										<button class="btn btn-primary">确认</button>
+									</div>
+
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- JavaScript files-->
+		<script src="./plugins/jquery-3.4.0/jquery-3.4.0.min.js"></script>
+		<script src="./plugins/popper.js/popper.min.js"></script>
+		<script src="./plugins/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+		<script src="./plugins/jquery.cookie/jquery.cookie.js"></script>
+		<script src="./plugins/jquery-validation/jquery.validate.min.js"></script>
+		<script src="./plugins/toastr-2.1.4/toastr.min.js"></script>
+		<script src="./plugins/data-tables/data-tables-1.10.18/js/jquery.dataTables.min.js"></script>
+		<script src="./plugins/data-tables/data-tables-1.10.18/js/dataTables.bootstrap4.min.js"></script>
+		<!-- public -->
+		<script src="js/public.js"></script>
+		<!-- self -->
+		<script src="js/ms_user_level_config.js"></script>
+
+	</body>
+
+</html>
